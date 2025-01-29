@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Submission with Animation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      /* Form Container Style */
+      #form-container {
+        position: relative; /* Enables positioning for animation above the form */
+        border: 2px solid red;
+      }
+
+      /* Animation Container Style */
+      #feedback-animation {
+        position: absolute;
+        /* top: -120px; */
+        left: 50%;
+        transform: translateX(-50%);
+        display: none; /* Hidden initially */
+        text-align: center;
+        z-index: 10; /* Keep it above the form */
+      }
+
+      #feedback-animation canvas {
+        width: 15em;
+        height: 15em;
+      }
+
+      /* Disable interactions with the form while processing */
+      #form-container.processing form {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Form Submission with Animation</h1>
+
+    <!-- Form Container -->
+    <div id="form-container">
+      <!-- Animation Container -->
+      <div id="feedback-animation">
+        <canvas id="feedback-canvas"></canvas>
+      </div>
+      <form id="test-form">
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" /><br /><br />
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" /><br /><br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script type="module">
+      import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+      const formContainer = document.getElementById("form-container");
+      const form = document.getElementById("test-form");
+      const animationContainer = document.getElementById("feedback-animation");
+      const canvas = document.getElementById("feedback-canvas");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Example success logic (set this dynamically)
+        const isSuccess = true; // Replace with actual submission result
+
+        // Add 'processing' class to disable interactions
+        formContainer.classList.add("processing");
+
+        // Display the animation container
+        animationContainer.style.display = "block";
+
+        // Load the appropriate animation
+        const animationSrc = isSuccess
+          ? "https://lottie.host/4cb8169d-7231-4f2f-b93f-bb7e74c4d508/fVrcT66ihx.lottie" // Success animation
+          : "https://lottie.host/embed/68dbbd9d-3009-4719-8b44-748855ba9535/aX6YS86frQ.lottie"; // Failure animation
+
+        // Render the animation on the canvas
+        const animation = new DotLottie({
+          autoplay: true,
+          loop: false,
+          canvas: canvas,
+          src: animationSrc,
+        });
+
+        // Hide animation after it finishes
+        setTimeout(() => {
+          animationContainer.style.display = "none"; // Hide the animation container
+          formContainer.classList.remove("processing"); // Re-enable interactions
+          form.reset(); // Optionally clear the form
+        }, 3000); // Adjust timeout as needed
+      });
+    </script>
+  </body>
+</html>

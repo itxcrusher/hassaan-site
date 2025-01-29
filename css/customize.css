@@ -151,3 +151,31 @@ body.clicked .modal-box{
 .contact-info-item-inner:hover{
     box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
 }
+
+/* Overlay for Feedback Animation */
+#form-container {
+    position: relative;
+}
+#feedback-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* background: rgba(0, 0, 0, 0.7); */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+  
+#feedback-overlay canvas {
+    width: 50vw;
+    height: 50vh;
+}
+
+#form-container.processing form {
+    pointer-events: none;
+    opacity: 0.5;
+}
