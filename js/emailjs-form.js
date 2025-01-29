@@ -26,7 +26,7 @@ window.onload = function () {
                 setTimeout(() => {
                     overlay.style.display = "none";
                     formContainer.classList.remove("processing");
-                }, 6500);
+                }, 7000);
             })
             .catch((error) => {
                 console.error("FAILED...", error);
@@ -36,7 +36,7 @@ window.onload = function () {
                 setTimeout(() => {
                     overlay.style.display = "none";
                     formContainer.classList.remove("processing");
-                }, 6500);
+                }, 7000);
             });
     });
     
