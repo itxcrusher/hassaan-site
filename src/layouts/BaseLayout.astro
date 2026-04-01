@@ -1,0 +1,66 @@
+---
+import 'crusher-ui-kit/styles/tokens.css';
+import 'crusher-ui-kit/styles/modes.css';
+import 'crusher-ui-kit/styles/semantic.css';
+import 'crusher-ui-kit/styles/bridge.css';
+import 'crusher-ui-kit/styles/code-theme.css';
+import 'crusher-ui-kit/styles/theme-scenes.css';
+import 'crusher-ui-kit/styles/dialect-overrides.css';
+import 'crusher-ui-kit/themes/minimal.css';
+import '../styles/site.css';
+
+const {
+  title = 'Muhammad Hassaan Javed',
+  description = 'Canonical personal site for Muhammad Hassaan Javed.',
+} = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://muhammadhassaanjaved.com');
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL('/images/logo.png', siteUrl).toString();
+---
+
+<!doctype html>
+<html lang="en" data-theme="minimal" data-mode="dark" data-density="comfortable">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Muhammad Hassaan Javed" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      const root = document.documentElement;
+      const storedMode = localStorage.getItem('hassaan-site:mode');
+      if (storedMode === 'light' || storedMode === 'dark') {
+        root.setAttribute('data-mode', storedMode);
+      }
+      root.setAttribute('data-theme', 'minimal');
+      root.setAttribute('data-density', 'comfortable');
+    </script>
+  </head>
+  <body>
+    <div class="site-scene" aria-hidden="true">
+      <div class="site-glow site-glow-a"></div>
+      <div class="site-glow site-glow-b"></div>
+      <div class="site-grid"></div>
+    </div>
+    <crusher-toast-center></crusher-toast-center>
+    <slot />
+    <script>
+      import '../scripts/site.js';
+    </script>
+  </body>
+</html>

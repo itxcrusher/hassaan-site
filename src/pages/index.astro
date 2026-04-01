@@ -1,0 +1,282 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { siteData } from '../data/site.js';
+
+const pageTitle = `${siteData.identity.name} | Personal site`;
+const pageDescription = siteData.identity.summary;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="site-shell">
+    <header class="topbar shell-width">
+      <a class="brand" href="#top">
+        <span class="brand-mark">MH</span>
+        <span class="brand-copy">
+          <strong>{siteData.identity.name}</strong>
+          <span>also known as {siteData.identity.alias}</span>
+        </span>
+      </a>
+
+      <nav class="topnav" aria-label="Primary">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <a href="#credentials">Credentials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="mode-toggle" type="button" data-mode-toggle aria-label="Toggle color mode"></button>
+      </div>
+    </header>
+
+    <main class="shell-width main-flow" id="top">
+      <section class="hero-panel">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">{siteData.identity.name}</p>
+            <h1>{siteData.identity.title}</h1>
+            <p class="hero-summary">{siteData.identity.summary}</p>
+            <p class="hero-detail">{siteData.identity.intro}</p>
+
+            <div class="chip-cloud" aria-label="Primary focus areas">
+              {siteData.heroTags.map((tag) => (
+                <crusher-chip>{tag}</crusher-chip>
+              ))}
+            </div>
+
+            <div class="hero-actions">
+              <a class="button-link" href="#work">
+                <crusher-button>See selected work</crusher-button>
+              </a>
+              <a class="button-link" href={siteData.links.portfolio} target="_blank" rel="noreferrer">
+                <crusher-button>View portfolio</crusher-button>
+              </a>
+              <a class="button-link" href={siteData.links.cv} target="_blank" rel="noreferrer">
+                <crusher-button variant="outline">Download CV</crusher-button>
+              </a>
+              <button class="button-reset" type="button" data-copy-email data-email={siteData.identity.email}>
+                <crusher-button variant="secondary">Copy email</crusher-button>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-rail">
+            <crusher-card class="portrait-card">
+              <div class="portrait-frame">
+                <img src="/images/portrait.jpg" alt={`Portrait of ${siteData.identity.name}`} loading="eager" />
+              </div>
+              <div class="portrait-copy">
+                <p class="portrait-kicker">Operating range</p>
+                <h2>{siteData.identity.shortName} works across engineering, infrastructure, automation, design, and communication.</h2>
+                <p>One site should not flatten that range into a single job title. This one is built to hold the real breadth.</p>
+              </div>
+            </crusher-card>
+
+            <crusher-card class="ecosystem-card">
+              <p class="section-kicker">Connected surfaces</p>
+              <div class="ecosystem-list">
+                {siteData.ecosystem.map((item) => (
+                  <a class="ecosystem-link" href={item.href} target="_blank" rel="noreferrer">
+                    <strong>{item.title}</strong>
+                    <span>{item.summary}</span>
+                  </a>
+                ))}
+              </div>
+            </crusher-card>
+          </div>
+        </div>
+
+        <div class="signal-grid">
+          {siteData.heroSignals.map((signal) => (
+            <crusher-stat label={signal.label} value={signal.value} meta={signal.meta} tone={signal.tone}></crusher-stat>
+          ))}
+        </div>
+      </section>
+
+      <section class="section-block surface-section" id="capabilities">
+        <SectionIntro
+          kicker="What I do"
+          title="A broad technical range, organized into clear operating lanes."
+          intro="The personal site should capture the full profile, not force everything into a single role. These are the working lanes that show up repeatedly across projects and clients."
+        />
+
+        <div class="feature-grid">
+          {siteData.capabilityGroups.map((group) => (
+            <crusher-card class="feature-card">
+              <p class="card-kicker">{group.title}</p>
+              <p class="card-summary">{group.summary}</p>
+              <div class="lane-tags" aria-label={`${group.title} capabilities`}>
+                {group.items.map((item) => (
+                  <crusher-chip>{item}</crusher-chip>
+                ))}
+              </div>
+            </crusher-card>
+          ))}
+        </div>
+      </section>
+
+      <section class="section-block" id="work">
+        <SectionIntro
+          kicker="Selected work"
+          title="A few representative builds, with the full body of work living in the portfolio."
+          intro="The personal site should acknowledge real work without turning into a giant gallery. These projects represent the current operating range; the portfolio remains the deeper visual showcase."
+        />
+
+        <div class="project-grid">
+          {siteData.selectedProjects.map((project) => (
+            <a class="project-link" href={project.href} target="_blank" rel="noreferrer">
+              <crusher-card class="project-card">
+                <div class="project-media">
+                  <img src={project.image} alt={project.title} loading="lazy" />
+                </div>
+                <div class="project-copy">
+                  <p class="card-kicker">{project.note}</p>
+                  <h3>{project.title}</h3>
+                  <p>{project.summary}</p>
+                </div>
+              </crusher-card>
+            </a>
+          ))}
+        </div>
+
+        <div class="section-actions">
+          <a class="button-link" href={siteData.links.portfolio} target="_blank" rel="noreferrer">
+            <crusher-button variant="outline">Open full portfolio</crusher-button>
+          </a>
+        </div>
+      </section>
+
+      <section class="section-block" id="writing">
+        <SectionIntro
+          kicker="Writing and research"
+          title="Technical writing that explains systems, automation, cloud work, and AI without losing practical context."
+          intro="Writing matters here because the public site is not only a gallery. It is also a record of how I think, explain, and make technical work legible."
+        />
+
+        <div class="project-grid publication-grid">
+          {siteData.publications.map((publication) => (
+            <a class="project-link" href={publication.href} target="_blank" rel="noreferrer">
+              <crusher-card class="project-card publication-card">
+                <div class="project-media publication-media">
+                  <img src={publication.image} alt={publication.title} loading="lazy" />
+                </div>
+                <div class="project-copy">
+                  <p class="card-kicker">{publication.note}</p>
+                  <h3>{publication.title}</h3>
+                </div>
+              </crusher-card>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="section-block surface-section" id="credentials">
+        <SectionIntro
+          kicker="Credentials"
+          title="Experience, certifications, and education that anchor the broader profile."
+          intro="This section is intentionally selective. It supports trust and context without turning the site into a dense CV dump."
+        />
+
+        <div class="credential-grid">
+          <crusher-card class="timeline-card">
+            <p class="card-kicker">Experience</p>
+            <crusher-timeline>
+              {siteData.experience.map((item) => (
+                <crusher-timeline-item>
+                  <span slot="date" class="timeline-date">{item.range}</span>
+                  <h4>{item.title}</h4>
+                  <p>{item.org}</p>
+                </crusher-timeline-item>
+              ))}
+            </crusher-timeline>
+          </crusher-card>
+
+          <crusher-card class="timeline-card">
+            <p class="card-kicker">Certifications</p>
+            <crusher-timeline>
+              {siteData.credentials.map((item) => (
+                <crusher-timeline-item>
+                  <span slot="date" class="timeline-date">{item.range}</span>
+                  <h4>{item.title}</h4>
+                  <p>{item.org}</p>
+                </crusher-timeline-item>
+              ))}
+            </crusher-timeline>
+          </crusher-card>
+
+          <crusher-card class="timeline-card">
+            <p class="card-kicker">Education</p>
+            <crusher-timeline>
+              {siteData.education.map((item) => (
+                <crusher-timeline-item>
+                  <span slot="date" class="timeline-date">{item.range}</span>
+                  <h4>{item.title}</h4>
+                  <p>{item.org}</p>
+                </crusher-timeline-item>
+              ))}
+            </crusher-timeline>
+          </crusher-card>
+        </div>
+      </section>
+
+      <section class="section-block surface-section contact-block" id="contact">
+        <SectionIntro
+          kicker="Contact"
+          title="Use the personal site as the canonical starting point, then route outward from there."
+          intro="This is where the public trust layer should be simple: clear links, direct contact, and obvious routes into the rest of the ecosystem."
+        />
+
+        <div class="contact-grid">
+          <crusher-card class="contact-card contact-card-primary">
+            <p class="card-kicker">Primary contact</p>
+            <h3>{siteData.identity.email}</h3>
+            <p>Available for consulting, infrastructure work, automation systems, and selected product collaborations.</p>
+            <div class="hero-actions compact-actions">
+              <a class="button-link" href={siteData.links.email}>
+                <crusher-button>Email me</crusher-button>
+              </a>
+              <a class="button-link" href={siteData.links.cv} target="_blank" rel="noreferrer">
+                <crusher-button variant="outline">Download CV</crusher-button>
+              </a>
+            </div>
+          </crusher-card>
+
+          <crusher-card class="contact-card">
+            <p class="card-kicker">Network and writing</p>
+            <div class="link-stack">
+              <a href={siteData.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href={siteData.links.github} target="_blank" rel="noreferrer">GitHub</a>
+              <a href={siteData.links.medium} target="_blank" rel="noreferrer">Medium</a>
+              <a href={siteData.links.maps} target="_blank" rel="noreferrer">Location</a>
+            </div>
+          </crusher-card>
+
+          <crusher-card class="contact-card">
+            <p class="card-kicker">Ecosystem routes</p>
+            <div class="link-stack">
+              <a href={siteData.links.portfolio} target="_blank" rel="noreferrer">Portfolio</a>
+              <a href={siteData.links.tools} target="_blank" rel="noreferrer">Tools hub</a>
+              <a href={siteData.links.uiKit} target="_blank" rel="noreferrer">Crusher UI Kit</a>
+              <a href={siteData.links.phone}>Phone</a>
+            </div>
+          </crusher-card>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell-width">
+      <div>
+        <strong>{siteData.identity.name}</strong>
+        <p>The canonical personal site for work, writing, capabilities, and ecosystem routing.</p>
+      </div>
+      <div class="footer-links">
+        <a href={siteData.links.portfolio} target="_blank" rel="noreferrer">Portfolio</a>
+        <a href={siteData.links.tools} target="_blank" rel="noreferrer">Tools</a>
+        <a href={siteData.links.uiKit} target="_blank" rel="noreferrer">UI Kit</a>
+      </div>
+      <p class="footer-meta">Copyright <span data-current-year></span> Muhammad Hassaan Javed.</p>
+    </footer>
+  </div>
+</BaseLayout>
