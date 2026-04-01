@@ -5,9 +5,9 @@ export const siteData = {
     alias: 'Crusher',
     title: 'I build infrastructure, AI, and product systems across the stack.',
     summary:
-      'I design, build, and operate technical systems across infrastructure, cloud, AI, product engineering, design, and growth. This site is the canonical home for my work, writing, and ecosystem.',
+      'I work across infrastructure, AI, product engineering, design systems, and growth. This site brings together the work, writing, and links that matter most.',
     intro:
-      'I am a results-driven DevOps, Cloud, and AI engineer with a background that extends beyond one lane. I work across platform foundations, automation, product build, design systems, and the communication needed to make technical work usable.',
+      'Over the last several years I have built cloud foundations, automation pipelines, AI workflows, interfaces, and delivery systems for clients, teams, and products. I care about making technical systems useful, understandable, and durable.',
     location: 'Pakistan',
     email: 'muhammadhassaanjaved99@gmail.com',
     phone: '+92 302 7538580',
@@ -36,21 +36,21 @@ export const siteData = {
   ],
   heroSignals: [
     {
-      label: 'Core lanes',
-      value: 'Infra + AI',
-      meta: 'Cloud platforms, automation, platform engineering, and delivery systems.',
+      label: 'Focus',
+      value: 'Infrastructure + AI',
+      meta: 'Cloud platforms, DevOps, automation, and product systems.',
       tone: 'brand',
     },
     {
-      label: 'Operating model',
-      value: 'Build + ship',
-      meta: 'From architecture and implementation to documentation, polish, and deployment.',
+      label: 'Working style',
+      value: 'Hands-on end to end',
+      meta: 'I move between architecture, implementation, design, and delivery.',
       tone: 'info',
     },
     {
       label: 'Coverage',
-      value: 'Design to ops',
-      meta: 'Engineering, infrastructure, UX, content, and system thinking in one working surface.',
+      value: 'Design to operations',
+      meta: 'Engineering, infrastructure, communication, and product thinking in one practice.',
       tone: 'success',
     },
   ],

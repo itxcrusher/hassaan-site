@@ -33,8 +33,9 @@ const pageDescription = siteData.identity.summary;
         </div>
 
         <div class="rail-footer">
-          <p class="rail-label">Canonical personal site</p>
-          <p>Infrastructure, AI, product systems, and ecosystem routing.</p>
+          <p class="rail-label">Muhammad Hassaan Javed</p>
+          <p>Based in Pakistan. Building across infrastructure, AI, product systems, and creative experiments.</p>
+          <p class="rail-copyright">Copyright <span data-current-year></span></p>
         </div>
       </div>
     </aside>
@@ -45,7 +46,7 @@ const pageDescription = siteData.identity.summary;
     <button class="rail-overlay" type="button" data-rail-overlay aria-label="Close navigation"></button>
 
     <main class="site-main" id="top">
-      <section class="hero-panel">
+      <section class="hero-panel panel-section" id="home" data-panel>
         <div class="hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">Hi, I'm <span>{siteData.identity.shortName}</span></p>
@@ -89,8 +90,8 @@ const pageDescription = siteData.identity.summary;
               </div>
               <div class="portrait-copy">
                 <p class="portrait-kicker">Operating range</p>
-                <h2>{siteData.identity.shortName} works across engineering, infrastructure, automation, design, and communication.</h2>
-                <p>One site should not flatten that range into a single job title. This one is built to hold the real breadth.</p>
+                <h2>I move between engineering, infrastructure, automation, design, and communication.</h2>
+                <p>That range is deliberate. I like building systems that work well, look right, and make sense to the people using them.</p>
               </div>
             </crusher-card>
 
@@ -115,11 +116,11 @@ const pageDescription = siteData.identity.summary;
         </div>
       </section>
 
-      <section class="section-block surface-section" id="capabilities">
+      <section class="section-block surface-section panel-section" id="capabilities" data-panel>
         <SectionIntro
           kicker="What I do"
           title="A broad technical range, organized into clear operating lanes."
-          intro="The personal site should capture the full profile, not force everything into a single role. These are the working lanes that show up repeatedly across projects and clients."
+          intro="I work across a wider range than a single title suggests. These are the lanes I return to most often."
         />
 
         <div class="feature-grid">
@@ -137,11 +138,11 @@ const pageDescription = siteData.identity.summary;
         </div>
       </section>
 
-      <section class="section-block" id="work">
+      <section class="section-block panel-section" id="work" data-panel>
         <SectionIntro
           kicker="Selected work"
           title="A few representative builds, with the full body of work living in the portfolio."
-          intro="The personal site should acknowledge real work without turning into a giant gallery. These projects represent the current operating range; the portfolio remains the deeper visual showcase."
+          intro="These projects show how I think and build. The portfolio goes deeper into the experimental and visual work."
         />
 
         <div class="project-grid">
@@ -168,11 +169,11 @@ const pageDescription = siteData.identity.summary;
         </div>
       </section>
 
-      <section class="section-block" id="writing">
+      <section class="section-block panel-section" id="writing" data-panel>
         <SectionIntro
           kicker="Writing and research"
           title="Technical writing that explains systems, automation, cloud work, and AI without losing practical context."
-          intro="Writing matters here because the public site is not only a gallery. It is also a record of how I think, explain, and make technical work legible."
+          intro="I write when something technical deserves to be explained clearly, practically, and without unnecessary jargon."
         />
 
         <div class="project-grid publication-grid">
@@ -192,11 +193,11 @@ const pageDescription = siteData.identity.summary;
         </div>
       </section>
 
-      <section class="section-block surface-section" id="credentials">
+      <section class="section-block surface-section panel-section" id="credentials" data-panel>
         <SectionIntro
           kicker="Credentials"
           title="Experience, certifications, and education that anchor the broader profile."
-          intro="This section is intentionally selective. It supports trust and context without turning the site into a dense CV dump."
+          intro="A few anchors from my experience, certifications, and education."
         />
 
         <div class="credential-grid">
@@ -241,18 +242,18 @@ const pageDescription = siteData.identity.summary;
         </div>
       </section>
 
-      <section class="section-block surface-section contact-block" id="contact">
+      <section class="section-block surface-section contact-block panel-section" id="contact" data-panel>
         <SectionIntro
           kicker="Contact"
-          title="Use the personal site as the canonical starting point, then route outward from there."
-          intro="This is where the public trust layer should be simple: clear links, direct contact, and obvious routes into the rest of the ecosystem."
+          title="If you want to work together, start here."
+          intro="The best first step is direct contact. From there you can also move into the portfolio, tools, and framework surfaces."
         />
 
         <div class="contact-grid">
           <crusher-card class="contact-card contact-card-primary">
             <p class="card-kicker">Primary contact</p>
             <h3>{siteData.identity.email}</h3>
-            <p>Available for consulting, infrastructure work, automation systems, and selected product collaborations.</p>
+            <p>I am available for consulting, infrastructure work, automation systems, and selected product collaborations.</p>
             <div class="hero-actions compact-actions">
               <a class="button-link" href={siteData.links.email}>
                 <crusher-button>Email me</crusher-button>
@@ -285,18 +286,5 @@ const pageDescription = siteData.identity.summary;
         </div>
       </section>
     </main>
-
-    <footer class="site-footer site-main">
-      <div>
-        <strong>{siteData.identity.name}</strong>
-        <p>The canonical personal site for work, writing, capabilities, and ecosystem routing.</p>
-      </div>
-      <div class="footer-links">
-        <a href={siteData.links.portfolio} target="_blank" rel="noreferrer">Portfolio</a>
-        <a href={siteData.links.tools} target="_blank" rel="noreferrer">Tools</a>
-        <a href={siteData.links.uiKit} target="_blank" rel="noreferrer">UI Kit</a>
-      </div>
-      <p class="footer-meta">Copyright <span data-current-year></span> Muhammad Hassaan Javed.</p>
-    </footer>
   </div>
 </BaseLayout>

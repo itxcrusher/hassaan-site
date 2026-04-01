@@ -19,6 +19,8 @@ It is not the portfolio and it is not the tools hub.
 - The site should stay static-first unless a clear content or product need justifies something heavier.
 - Crusher UI Kit provides the design system and shared UI primitives, but the site is free to use whatever stack is best for its own needs.
 - The site should prefer structured content and editorial clarity over one giant landing page of unrelated material.
+- Public copy should stay in a consistent first-person voice and should never leak internal notes or planning language.
+- Desktop should preserve a deliberate navigation silhouette rather than collapsing into a generic long-scroll marketing page.
 - Portfolio depth belongs in `portfolio.muhammadhassaanjaved.com`.
 - Tools and products discovery belongs in `tools.muhammadhassaanjaved.com`.
 
