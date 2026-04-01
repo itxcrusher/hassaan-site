@@ -11,12 +11,8 @@ const pageDescription = siteData.identity.summary;
   <div class="site-shell">
     <aside class="site-rail" data-site-rail>
       <div class="rail-inner">
-        <a class="brand" href="#top">
-          <span class="brand-mark">C</span>
-          <span class="brand-copy">
-            <strong>{siteData.identity.shortName}</strong>
-            <span>{siteData.identity.name}</span>
-          </span>
+        <a class="brand" href="#top" aria-label={siteData.identity.name}>
+          <img class="brand-icon" src="/favicon.svg" alt="" />
         </a>
 
         <nav class="rail-nav" aria-label="Primary">
@@ -28,14 +24,8 @@ const pageDescription = siteData.identity.summary;
           <a data-rail-link href="#contact">Contact</a>
         </nav>
 
-        <div class="rail-actions">
-          <button class="mode-toggle" type="button" data-mode-toggle aria-label="Toggle color mode"></button>
-        </div>
-
         <div class="rail-footer">
-          <p class="rail-label">Muhammad Hassaan Javed</p>
-          <p>Based in Pakistan. Building across infrastructure, AI, product systems, and creative experiments.</p>
-          <p class="rail-copyright">Copyright <span data-current-year></span></p>
+          <p class="rail-copyright">Copyright <span data-current-year></span> Hassaan</p>
         </div>
       </div>
     </aside>

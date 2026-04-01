@@ -1,33 +1,8 @@
 import 'crusher-ui-kit';
-import { setMode, showToast } from 'crusher-ui-kit/runtime';
+import { showToast } from 'crusher-ui-kit/runtime';
 
-const modeKey = 'hassaan-site:mode';
 const navKey = 'data-nav-open';
 const panelDesktopQuery = window.matchMedia('(min-width: 961px)');
-
-function readMode() {
-  return document.documentElement.getAttribute('data-mode') === 'light' ? 'light' : 'dark';
-}
-
-function syncModeButton() {
-  const button = document.querySelector('[data-mode-toggle]');
-  if (!button) return;
-  const mode = readMode();
-  const nextMode = mode === 'dark' ? 'light' : 'dark';
-  button.setAttribute('aria-pressed', String(mode === 'dark'));
-  button.textContent = nextMode === 'light' ? 'Switch to light mode' : 'Switch to dark mode';
-}
-
-function bindModeToggle() {
-  const button = document.querySelector('[data-mode-toggle]');
-  if (!button) return;
-  button.addEventListener('click', () => {
-    const nextMode = readMode() === 'dark' ? 'light' : 'dark';
-    setMode(nextMode);
-    localStorage.setItem(modeKey, nextMode);
-    syncModeButton();
-  });
-}
 
 function bindCopyEmail() {
   const button = document.querySelector('[data-copy-email]');
@@ -74,11 +49,16 @@ function setActivePanel(id) {
     const panelId = panel.id;
     const isActive = panelId === id;
     panel.classList.toggle('is-active', isActive);
+    if (isActive) {
+      panel.scrollTop = 0;
+    }
     matched ||= isActive;
   });
   const resolved = matched ? id : 'home';
   if (!matched) {
-    document.getElementById('home')?.classList.add('is-active');
+    const home = document.getElementById('home');
+    home?.classList.add('is-active');
+    if (home) home.scrollTop = 0;
   }
   setActiveLink(resolved);
 }
@@ -141,14 +121,10 @@ function bindRailToggle() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const storedMode = localStorage.getItem(modeKey);
-  setMode(storedMode === 'light' ? 'light' : 'dark');
   setNavOpen(false);
-  bindModeToggle();
   bindCopyEmail();
   bindRailToggle();
   bindPanelNavigation();
   syncPanelsFromLocation();
-  syncModeButton();
   setYear();
 });
