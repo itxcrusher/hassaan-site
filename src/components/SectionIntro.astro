@@ -4,6 +4,6 @@ const { kicker, title, intro } = Astro.props;
 
 <header class="section-intro">
   {kicker ? <p class="section-kicker">{kicker}</p> : null}
-  <crusher-section-title>{title}</crusher-section-title>
+  <h2 class="section-heading">{title}</h2>
   {intro ? <p class="section-copy">{intro}</p> : null}
 </header>

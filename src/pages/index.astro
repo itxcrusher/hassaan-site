@@ -9,33 +9,46 @@ const pageDescription = siteData.identity.summary;
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <div class="site-shell">
-    <header class="topbar shell-width">
-      <a class="brand" href="#top">
-        <span class="brand-mark">MH</span>
-        <span class="brand-copy">
-          <strong>{siteData.identity.name}</strong>
-          <span>also known as {siteData.identity.alias}</span>
-        </span>
-      </a>
+    <aside class="site-rail" data-site-rail>
+      <div class="rail-inner">
+        <a class="brand" href="#top">
+          <span class="brand-mark">C</span>
+          <span class="brand-copy">
+            <strong>{siteData.identity.shortName}</strong>
+            <span>{siteData.identity.name}</span>
+          </span>
+        </a>
 
-      <nav class="topnav" aria-label="Primary">
-        <a href="#capabilities">Capabilities</a>
-        <a href="#work">Work</a>
-        <a href="#writing">Writing</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <nav class="rail-nav" aria-label="Primary">
+          <a data-rail-link href="#top">Home</a>
+          <a data-rail-link href="#capabilities">Capabilities</a>
+          <a data-rail-link href="#work">Work</a>
+          <a data-rail-link href="#writing">Writing</a>
+          <a data-rail-link href="#credentials">Credentials</a>
+          <a data-rail-link href="#contact">Contact</a>
+        </nav>
 
-      <div class="topbar-actions">
-        <button class="mode-toggle" type="button" data-mode-toggle aria-label="Toggle color mode"></button>
+        <div class="rail-actions">
+          <button class="mode-toggle" type="button" data-mode-toggle aria-label="Toggle color mode"></button>
+        </div>
+
+        <div class="rail-footer">
+          <p class="rail-label">Canonical personal site</p>
+          <p>Infrastructure, AI, product systems, and ecosystem routing.</p>
+        </div>
       </div>
-    </header>
+    </aside>
 
-    <main class="shell-width main-flow" id="top">
+    <button class="rail-toggle" type="button" data-rail-toggle aria-label="Open navigation">
+      <span class="rail-toggle-icon" aria-hidden="true">Menu</span>
+    </button>
+    <button class="rail-overlay" type="button" data-rail-overlay aria-label="Close navigation"></button>
+
+    <main class="site-main" id="top">
       <section class="hero-panel">
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">{siteData.identity.name}</p>
+            <p class="eyebrow">Hi, I'm <span>{siteData.identity.shortName}</span></p>
             <h1>{siteData.identity.title}</h1>
             <p class="hero-summary">{siteData.identity.summary}</p>
             <p class="hero-detail">{siteData.identity.intro}</p>
@@ -51,7 +64,7 @@ const pageDescription = siteData.identity.summary;
                 <crusher-button>See selected work</crusher-button>
               </a>
               <a class="button-link" href={siteData.links.portfolio} target="_blank" rel="noreferrer">
-                <crusher-button>View portfolio</crusher-button>
+                <crusher-button variant="secondary">View portfolio</crusher-button>
               </a>
               <a class="button-link" href={siteData.links.cv} target="_blank" rel="noreferrer">
                 <crusher-button variant="outline">Download CV</crusher-button>
@@ -59,6 +72,13 @@ const pageDescription = siteData.identity.summary;
               <button class="button-reset" type="button" data-copy-email data-email={siteData.identity.email}>
                 <crusher-button variant="secondary">Copy email</crusher-button>
               </button>
+            </div>
+
+            <div class="hero-links">
+              <a href={siteData.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href={siteData.links.github} target="_blank" rel="noreferrer">GitHub</a>
+              <a href={siteData.links.medium} target="_blank" rel="noreferrer">Medium</a>
+              <a href={siteData.links.maps} target="_blank" rel="noreferrer">Pakistan</a>
             </div>
           </div>
 
@@ -266,7 +286,7 @@ const pageDescription = siteData.identity.summary;
       </section>
     </main>
 
-    <footer class="site-footer shell-width">
+    <footer class="site-footer site-main">
       <div>
         <strong>{siteData.identity.name}</strong>
         <p>The canonical personal site for work, writing, capabilities, and ecosystem routing.</p>
