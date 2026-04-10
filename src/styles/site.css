@@ -45,9 +45,7 @@ body {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(900px 540px at 0% 0%, color-mix(in srgb, var(--crusher-color-brand-primary) 16%, transparent), transparent 72%),
-    linear-gradient(180deg, color-mix(in srgb, var(--site-bg) 92%, black 8%), var(--site-bg));
+  background: var(--site-bg);
   color: var(--site-text);
   font-family: var(--crusher-font-family-body);
   line-height: 1.6;
@@ -59,11 +57,11 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(color-mix(in srgb, var(--site-text) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--site-text) 4%, transparent) 1px, transparent 1px);
-  background-size: 2.8rem 2.8rem;
-  mask-image: radial-gradient(circle at top left, black, transparent 72%);
-  opacity: 0.42;
+    linear-gradient(color-mix(in srgb, var(--crusher-color-brand-primary) 18%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--crusher-color-brand-primary) 18%, transparent) 1px, transparent 1px);
+  background-size: 3.2rem 3.2rem;
+  mask-image: radial-gradient(ellipse 80% 60% at 20% 20%, black 10%, transparent 70%);
+  opacity: 0.18;
   z-index: -2;
 }
 
@@ -101,24 +99,35 @@ select {
 .site-glow {
   position: absolute;
   border-radius: 999px;
-  filter: blur(80px);
-  opacity: 0.34;
+  filter: blur(100px);
 }
 
 .site-glow-a {
-  inline-size: min(44rem, 68vw);
-  block-size: min(44rem, 68vw);
-  inset-inline-start: -14rem;
-  inset-block-start: -18rem;
-  background: color-mix(in srgb, var(--crusher-color-brand-primary) 34%, transparent);
+  inline-size: min(52rem, 75vw);
+  block-size: min(52rem, 75vw);
+  inset-inline-start: -16rem;
+  inset-block-start: -20rem;
+  background: color-mix(in srgb, var(--crusher-color-brand-primary) 28%, transparent);
+  opacity: 0.55;
 }
 
 .site-glow-b {
-  inline-size: min(34rem, 54vw);
-  block-size: min(34rem, 54vw);
-  inset-inline-end: -8rem;
-  inset-block-start: 18rem;
-  background: color-mix(in srgb, var(--crusher-color-brand-secondary) 16%, transparent);
+  inline-size: min(38rem, 56vw);
+  block-size: min(38rem, 56vw);
+  inset-inline-end: -10rem;
+  inset-block-start: 10rem;
+  background: color-mix(in srgb, var(--crusher-color-brand-secondary) 22%, transparent);
+  opacity: 0.38;
+}
+
+.site-glow-c {
+  inline-size: min(28rem, 42vw);
+  block-size: min(28rem, 42vw);
+  inset-inline-start: 30%;
+  inset-block-end: -8rem;
+  background: color-mix(in srgb, var(--crusher-color-brand-primary) 18%, transparent);
+  opacity: 0.3;
+  filter: blur(120px);
 }
 
 .site-grid {
@@ -134,11 +143,20 @@ select {
   position: fixed;
   inset: 0 auto 0 0;
   width: var(--site-rail-width);
-  border-right: 1px solid var(--site-border-strong);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--site-surface) 97%, transparent), color-mix(in srgb, var(--site-bg-muted) 94%, transparent));
-  backdrop-filter: blur(16px);
+  border-right: 1px solid color-mix(in srgb, white 8%, transparent);
+  background: color-mix(in srgb, var(--site-bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   z-index: 30;
+}
+
+.site-rail::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 2px;
+  background: linear-gradient(90deg, transparent, var(--crusher-color-brand-primary), transparent);
 }
 
 .rail-inner {
@@ -386,11 +404,11 @@ select {
 
 .hero-copy h1 {
   margin: 0;
-  max-width: 14ch;
+  max-width: 18ch;
   font-family: var(--crusher-font-family-display);
-  font-size: clamp(2.1rem, 3.4vw, 3.2rem);
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
   line-height: 1.0;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.05em;
   text-wrap: balance;
 }
 
@@ -478,11 +496,12 @@ select {
 .project-card,
 .timeline-card,
 .contact-card {
-  --crusher-card-bg: color-mix(in srgb, var(--site-surface) 98%, transparent);
-  --crusher-card-border: color-mix(in srgb, var(--site-border) 90%, transparent);
-  --crusher-card-shadow: var(--site-shadow);
-  --crusher-card-hover-shadow: var(--site-shadow);
-  --crusher-card-hover-lift: translateY(0);
+  --crusher-card-bg: color-mix(in srgb, var(--site-surface) 58%, transparent);
+  --crusher-card-backdrop: blur(18px);
+  --crusher-card-border: color-mix(in srgb, white 9%, transparent);
+  --crusher-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255,255,255,0.06);
+  --crusher-card-hover-shadow: 0 16px 48px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255,255,255,0.08);
+  --crusher-card-hover-lift: translateY(-2px);
 }
 
 .portrait-card {

@@ -3,7 +3,7 @@ export const siteData = {
     name: 'Muhammad Hassaan Javed',
     shortName: 'Hassaan',
     alias: 'Crusher',
-    title: 'I build infrastructure, AI, and product systems across the stack.',
+    title: 'Infrastructure, AI, product — built end to end.',
     summary:
       'I work across infrastructure, AI, product engineering, design systems, and growth. This site brings together the work, writing, and links that matter most.',
     intro:
