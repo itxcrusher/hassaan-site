@@ -12,7 +12,10 @@ const pageDescription = siteData.identity.summary;
     <aside class="site-rail" data-site-rail>
       <div class="rail-inner">
         <a class="brand" href="#top" aria-label={siteData.identity.name}>
-          <img class="brand-icon" src="/favicon.svg" alt="" />
+          <div class="brand-icon-wrap">
+            <img class="brand-icon" src="/favicon.svg" alt="" />
+          </div>
+          <span class="brand-name">{siteData.identity.shortName}</span>
         </a>
 
         <nav class="rail-nav" aria-label="Primary">
@@ -39,16 +42,15 @@ const pageDescription = siteData.identity.summary;
       <section class="hero-panel panel-section" id="home" data-panel>
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Hi, I'm <span>{siteData.identity.shortName}</span></p>
+            <div class="hero-top-row">
+              <p class="eyebrow">Hi, I'm <span>{siteData.identity.shortName}</span></p>
+              <span class="avail-badge" aria-label="Currently available for work">
+                <span class="avail-dot" aria-hidden="true"></span>
+                Available
+              </span>
+            </div>
             <h1>{siteData.identity.title}</h1>
             <p class="hero-summary">{siteData.identity.summary}</p>
-            <p class="hero-detail">{siteData.identity.intro}</p>
-
-            <div class="chip-cloud" aria-label="Primary focus areas">
-              {siteData.heroTags.map((tag) => (
-                <crusher-chip>{tag}</crusher-chip>
-              ))}
-            </div>
 
             <div class="hero-actions">
               <a class="button-link" href="#work">
@@ -70,6 +72,14 @@ const pageDescription = siteData.identity.summary;
               <a href={siteData.links.github} target="_blank" rel="noreferrer">GitHub</a>
               <a href={siteData.links.medium} target="_blank" rel="noreferrer">Medium</a>
               <a href={siteData.links.maps} target="_blank" rel="noreferrer">Pakistan</a>
+            </div>
+
+            <p class="hero-detail">{siteData.identity.intro}</p>
+
+            <div class="chip-cloud" aria-label="Primary focus areas">
+              {siteData.heroTags.map((tag) => (
+                <crusher-chip>{tag}</crusher-chip>
+              ))}
             </div>
           </div>
 
@@ -104,6 +114,11 @@ const pageDescription = siteData.identity.summary;
             <crusher-stat label={signal.label} value={signal.value} meta={signal.meta} tone={signal.tone}></crusher-stat>
           ))}
         </div>
+
+        <div class="hero-scroll-hint" aria-hidden="true">
+          <span class="scroll-line"></span>
+          <span class="scroll-label">Scroll</span>
+        </div>
       </section>
 
       <section class="section-block surface-section panel-section" id="capabilities" data-panel>
@@ -115,7 +130,7 @@ const pageDescription = siteData.identity.summary;
 
         <div class="feature-grid">
           {siteData.capabilityGroups.map((group) => (
-            <crusher-card class="feature-card">
+            <crusher-card class="feature-card" data-tone={group.tone}>
               <p class="card-kicker">{group.title}</p>
               <p class="card-summary">{group.summary}</p>
               <div class="lane-tags" aria-label={`${group.title} capabilities`}>

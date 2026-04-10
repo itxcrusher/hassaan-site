@@ -57,24 +57,28 @@ export const siteData = {
   capabilityGroups: [
     {
       title: 'Infrastructure and operations',
+      tone: 'brand',
       summary:
         'Designing and operating resilient delivery systems across cloud, CI/CD, infrastructure as code, and runtime automation.',
       items: ['Linux', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'Multi-cloud'],
     },
     {
       title: 'AI and automation',
+      tone: 'info',
       summary:
         'Building practical AI workflows, automation systems, and toolchains that reduce manual work and increase operational leverage.',
       items: ['LLM workflows', 'Automation', 'Prompt systems', 'Data collection', 'Applied AI', 'Agent tooling'],
     },
     {
       title: 'Product engineering',
+      tone: 'warning',
       summary:
         'Shipping usable software across frontend, backend, integration, and platform concerns without treating design and implementation as separate worlds.',
       items: ['JavaScript', 'React', 'Node.js', 'Python', 'C#', 'Payment and admin flows'],
     },
     {
       title: 'Design and growth',
+      tone: 'accent',
       summary:
         'Turning technical work into clear interfaces, content, and narratives that can actually be understood, adopted, and trusted.',
       items: ['UI/UX design', 'Figma', 'SEO', 'Content writing', 'Digital marketing', 'Documentation'],
