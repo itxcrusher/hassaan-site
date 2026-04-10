@@ -239,6 +239,31 @@ button, input, textarea, select {
   border-radius: 0.7rem;
   border: 1px solid var(--site-border-brand);
   background: var(--site-surface-mid);
+  position: relative;
+}
+
+/* Corner brackets on brand icon — mirrors the old "Crusher" logo treatment */
+.brand-icon-wrap::before,
+.brand-icon-wrap::after {
+  content: '';
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-color: var(--crusher-color-brand-primary);
+}
+
+.brand-icon-wrap::before {
+  top: -3px;
+  left: -3px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.brand-icon-wrap::after {
+  bottom: -3px;
+  right: -3px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
 }
 
 .brand-icon {
@@ -425,24 +450,25 @@ button, input, textarea, select {
   100% { transform: scale(2.8); opacity: 0; }
 }
 
-/* Eyebrow */
+/* Eyebrow — "Hi, I'm Hassaan" */
 .eyebrow {
   margin: 0;
-  font-size: 0.78rem;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
   color: var(--site-text-mid);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .eyebrow span {
-  margin-left: 0.25rem;
   font-family: var(--site-font-accent);
-  font-size: 1.65rem;
+  font-size: 2.4rem;
   letter-spacing: normal;
   text-transform: none;
   color: var(--crusher-color-brand-primary);
+  font-weight: 700;
+  vertical-align: -0.25em;
 }
 
 /* H1 */
@@ -549,33 +575,36 @@ button, input, textarea, select {
 .portrait-frame {
   position: relative;
   border-radius: 1rem;
-  overflow: clip;
   aspect-ratio: 4 / 3.4;
   background: var(--site-surface-mid);
+  /* No overflow:clip here — brackets must extend outside the image */
+  margin: 1.1rem; /* room for brackets outside the frame */
 }
 
-/* Corner bracket decorations */
+/* Corner bracket decorations — extend OUTSIDE the image frame */
 .portrait-frame::before,
 .portrait-frame::after {
   content: '';
   position: absolute;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 3rem;
+  height: 3rem;
   border-color: var(--crusher-color-brand-primary);
   z-index: 2;
 }
 
 .portrait-frame::before {
-  inset: 0.75rem auto auto 0.75rem;
-  border-top: 3px solid;
-  border-left: 3px solid;
+  top: -0.85rem;
+  left: -0.85rem;
+  border-top: 4px solid;
+  border-left: 4px solid;
   border-radius: 4px 0 0 0;
 }
 
 .portrait-frame::after {
-  inset: auto 0.75rem 0.75rem auto;
-  border-right: 3px solid;
-  border-bottom: 3px solid;
+  bottom: -0.85rem;
+  right: -0.85rem;
+  border-right: 4px solid;
+  border-bottom: 4px solid;
   border-radius: 0 0 4px 0;
 }
 
@@ -583,6 +612,8 @@ button, input, textarea, select {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 1rem; /* clip the image itself */
+  display: block;
 }
 
 .portrait-copy {
@@ -721,6 +752,31 @@ button, input, textarea, select {
   font-size: clamp(1.75rem, 2.8vw, 2.4rem);
   line-height: 1.1;
   letter-spacing: -0.03em;
+  position: relative;
+  padding-bottom: 1.2rem;
+}
+
+/* Double underline bars — signature element from the brand identity */
+.section-heading::before {
+  content: '';
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  width: 3rem;
+  height: 4px;
+  background: var(--crusher-color-brand-primary);
+  border-radius: 2px;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1.5rem;
+  height: 4px;
+  background: var(--crusher-color-brand-primary);
+  border-radius: 2px;
 }
 
 .section-copy {
