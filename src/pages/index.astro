@@ -1,295 +1,333 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionIntro from '../components/SectionIntro.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 import { siteData } from '../data/site.js';
 
 const pageTitle = `${siteData.identity.name} | Personal site`;
-const pageDescription = siteData.identity.summary;
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <div class="site-shell">
-    <aside class="site-rail" data-site-rail>
-      <div class="rail-inner">
-        <a class="brand" href="#top" aria-label={siteData.identity.name}>
-          <div class="brand-icon-wrap">
-            <img class="brand-icon" src="/favicon.svg" alt="" />
-          </div>
-          <span class="brand-name">{siteData.identity.shortName}</span>
-        </a>
-
-        <nav class="rail-nav" aria-label="Primary">
-          <a data-rail-link href="#top">Home</a>
-          <a data-rail-link href="#capabilities">Capabilities</a>
-          <a data-rail-link href="#work">Work</a>
-          <a data-rail-link href="#writing">Writing</a>
-          <a data-rail-link href="#credentials">Credentials</a>
-          <a data-rail-link href="#contact">Contact</a>
-        </nav>
-
-        <div class="rail-footer">
-          <p class="rail-copyright">© <span data-current-year></span> Hassaan</p>
-        </div>
-      </div>
-    </aside>
-
-    <button class="rail-toggle" type="button" data-rail-toggle aria-label="Open navigation">
-      <span class="rail-toggle-icon" aria-hidden="true">Menu</span>
-    </button>
-    <button class="rail-overlay" type="button" data-rail-overlay aria-label="Close navigation"></button>
-
-    <main class="site-main" id="top">
-      <section class="hero-panel panel-section" id="home" data-panel>
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="hero-top-row">
-              <p class="eyebrow">Hi, I'm <span>{siteData.identity.shortName}</span></p>
-              <span class="avail-badge" aria-label="Currently available for work">
-                <span class="avail-dot" aria-hidden="true"></span>
-                Available
-              </span>
+<MainLayout title={pageTitle}>
+      <!-- ===== Home Section ===== -->
+      <section class="home panel-section" id="home" data-panel>
+        <div style="display: flex; flex-wrap: wrap; min-height: 100vh; align-items: center;">
+            <div style="flex: 0 0 60%; max-width: 60%; padding: 0 15px;">
+                <h3 style="font-size: 28px; margin: 15px 0;">Hi, I'm <span style="font-family: 'Clicker Script', cursive; font-size: 30px; font-weight: 700; color: var(--crusher-color-brand-primary)">Hassaan</span></h3>
+                <h3 style="font-size: 30px; margin: 15px 0;">A Freelance <span style="color: var(--crusher-color-brand-primary)">Cloud Engineer</span></h3>
+                <p style="margin-bottom: 70px; font-size: 20px; color: var(--site-text-soft);">I'm a Top-Rated Freelancer with an extensive experience for over 5 years</p>
+                <a href={siteData.links.tools} style="font-size: 16px; font-weight: 500; padding: 12px 35px; color: white; border-radius: 10px; background: var(--crusher-color-brand-primary); display: inline-block; white-space: nowrap; border: none; transition: transform 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Use Awesome Web Utility Tools for Free</a>
             </div>
-            <h1>{siteData.identity.title}</h1>
-            <p class="hero-tagline">{siteData.identity.summary}</p>
-
-            <div class="hero-actions">
-              <a class="button-link" href="#work">
-                <crusher-button>See selected work</crusher-button>
-              </a>
-              <a class="button-link" href={siteData.links.portfolio} target="_blank" rel="noreferrer">
-                <crusher-button variant="secondary">View portfolio</crusher-button>
-              </a>
-              <a class="button-link" href={siteData.links.cv} target="_blank" rel="noreferrer">
-                <crusher-button variant="outline">Download CV</crusher-button>
-              </a>
-              <button class="button-reset" type="button" data-copy-email data-email={siteData.identity.email}>
-                <crusher-button variant="secondary">Copy email</crusher-button>
-              </button>
+            
+            <div style="flex: 0 0 40%; max-width: 40%; text-align: center; position: relative; padding: 0 15px;">
+                <div style="position: absolute; height: 80px; width: 80px; border-top: 10px solid var(--crusher-color-brand-primary); border-left: 10px solid var(--crusher-color-brand-primary); left: 20px; top: -40px;"></div>
+                <img src="/images/portrait.jpg" alt="Hassaan" loading="eager" style="margin: auto; border-radius: 10px; height: 400px; display: inline-block;" />
+                <div style="position: absolute; height: 80px; width: 80px; border-bottom: 10px solid var(--crusher-color-brand-primary); border-right: 10px solid var(--crusher-color-brand-primary); right: 20px; bottom: -40px;"></div>
             </div>
-
-            <div class="hero-links">
-              <a href={siteData.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href={siteData.links.github} target="_blank" rel="noreferrer">GitHub</a>
-              <a href={siteData.links.medium} target="_blank" rel="noreferrer">Medium</a>
-              <a href={siteData.links.maps} target="_blank" rel="noreferrer">Pakistan</a>
-            </div>
-
-            <p class="hero-detail">{siteData.identity.intro}</p>
-
-            <div class="chip-cloud" aria-label="Primary focus areas">
-              {siteData.heroTags.map((tag) => (
-                <crusher-chip>{tag}</crusher-chip>
-              ))}
-            </div>
-          </div>
-
-          <div class="hero-rail">
-            <crusher-card class="portrait-card">
-              <div class="portrait-frame">
-                <img src="/images/portrait.jpg" alt={`Portrait of ${siteData.identity.name}`} loading="eager" />
-              </div>
-              <div class="portrait-copy">
-                <p class="portrait-kicker">Operating range</p>
-                <h2>Engineering, infrastructure, design — the range is deliberate.</h2>
-                <p>I build systems that work well, look right, and make sense to the people using them.</p>
-              </div>
-            </crusher-card>
-
-            <crusher-card class="ecosystem-card">
-              <p class="section-kicker">Connected surfaces</p>
-              <div class="ecosystem-list">
-                {siteData.ecosystem.map((item) => (
-                  <a class="ecosystem-link" href={item.href} target="_blank" rel="noreferrer">
-                    <strong>{item.title}</strong>
-                    <span>{item.summary}</span>
-                  </a>
-                ))}
-              </div>
-            </crusher-card>
-          </div>
-        </div>
-
-        <div class="signal-grid">
-          {siteData.heroSignals.map((signal) => (
-            <crusher-stat label={signal.label} value={signal.value} meta={signal.meta} tone={signal.tone}></crusher-stat>
-          ))}
-        </div>
-
-        <div class="hero-scroll-hint" aria-hidden="true">
-          <span class="scroll-line"></span>
-          <span class="scroll-label">Scroll</span>
         </div>
       </section>
 
-      <section class="section-block surface-section panel-section" id="capabilities" data-panel>
-        <SectionIntro
-          kicker="What I do"
-          title="A broad technical range, organized into clear operating lanes."
-          intro="I work across a wider range than a single title suggests. These are the lanes I return to most often."
-        />
+      <!-- ===== About Section ===== -->
+      <section class="section-block panel-section" id="about" data-panel>
+        <div class="section-title">
+          <h2>About Me</h2>
+        </div>
+        
+        <crusher-grid style="--grid-min-width: 300px; gap: 3rem;">
+            <crusher-stack>
+                <h3 style="font-size: 1.6rem;">My name is <span style="color: var(--crusher-color-brand-primary)">Muhammad Hassaan Javed</span> and I am a <span style="color: var(--crusher-color-brand-primary)">Freelancer</span></h3>
+                <p style="line-height: 1.8; color: var(--site-text-soft); font-size: 1.05rem;">{siteData.identity.summary} {siteData.identity.intro}</p>
+            </crusher-stack>
+            
+            <crusher-stack>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+                    <li style="display: flex; gap: 1rem; align-items:center; border-bottom: 1px solid var(--site-border); padding-bottom: 0.5rem; font-size: 1.05rem;">
+                        <strong style="min-width: 80px;">Email:</strong> <a href={siteData.links.email} style="color: var(--site-text-soft); text-decoration: none;">{siteData.identity.email}</a>
+                    </li>
+                    <li style="display: flex; gap: 1rem; align-items:center; border-bottom: 1px solid var(--site-border); padding-bottom: 0.5rem; font-size: 1.05rem;">
+                        <strong style="min-width: 80px;">Website:</strong> <a href={siteData.links.site} target="_blank" style="color: var(--site-text-soft); text-decoration: none;">muhammadhassaanjaved.com</a>
+                    </li>
+                    <li style="display: flex; gap: 1rem; align-items:center; border-bottom: 1px solid var(--site-border); padding-bottom: 0.5rem; font-size: 1.05rem;">
+                        <strong style="min-width: 80px;">Portfolio:</strong> <a href={siteData.links.portfolio} target="_blank" style="color: var(--site-text-soft); text-decoration: none;">portfolio.muhammadhassaanjaved.com</a>
+                    </li>
+                </ul>
+                <div style="margin-top: 1.5rem;">
+                    <a href="#contact" data-rail-link>
+                        <crusher-button>Contact Now</crusher-button>
+                    </a>
+                </div>
+            </crusher-stack>
+        </crusher-grid>
 
-        <div class="feature-grid">
-          {siteData.capabilityGroups.map((group) => (
-            <crusher-card class="feature-card" data-tone={group.tone}>
-              <p class="card-kicker">{group.title}</p>
-              <p class="card-summary">{group.summary}</p>
-              <div class="lane-tags" aria-label={`${group.title} capabilities`}>
-                {group.items.map((item) => (
-                  <crusher-chip>{item}</crusher-chip>
-                ))}
-              </div>
-            </crusher-card>
-          ))}
+        <crusher-grid style="--grid-min-width: 250px; gap: 2rem; margin-top: 4rem;">
+            <div>
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Interests</h3>
+                <div class="timeline-box">
+                    <div class="timeline shadow-dark">
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">DevOps Engineering</h4></div>
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Cloud Computing</h4></div>
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Artificial Intelligence</h4></div>
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Business Development</h4></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Hobbies</h3>
+                <div class="timeline-box">
+                    <div class="timeline shadow-dark">
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Travel</h4></div>
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Sports</h4></div>
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Movies</h4></div>
+                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Music</h4></div>
+                    </div>
+                </div>
+            </div>
+        </crusher-grid>
+      </section>
+
+      <!-- ===== Qualifications Section ===== -->
+      <section class="section-block panel-section" id="qualifications" data-panel>
+        <div class="section-title">
+          <h2>Qualifications</h2>
+        </div>
+        
+        <crusher-grid style="--grid-min-width: 350px; gap: 3rem;">
+            <div>
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Education</h3>
+                <div class="timeline-box">
+                    <div class="timeline shadow-dark">
+                    {siteData.education.map((item) => (
+                        <div class="timeline-item">
+                            <div class="circle-dot"></div>
+                            <h3 class="timeline-date">
+                                <i class="fa fa-calendar"></i> {item.range}
+                            </h3>
+                            <h4 class="timeline-title">{item.title}</h4>
+                            <p class="timeline-text">{item.org}</p>
+                        </div>
+                    ))}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Experience</h3>
+                <div class="timeline-box">
+                    <div class="timeline shadow-dark">
+                    {siteData.experience.map((item) => (
+                        <div class="timeline-item">
+                            <div class="circle-dot"></div>
+                            <h3 class="timeline-date">
+                                <i class="fa fa-calendar"></i> {item.range}
+                            </h3>
+                            <h4 class="timeline-title">{item.title}</h4>
+                            <p class="timeline-text">{item.org}</p>
+                        </div>
+                    ))}
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Certifications</h3>
+                <div class="timeline-box">
+                    <div class="timeline shadow-dark">
+                    {siteData.credentials.map((item) => (
+                        <div class="timeline-item">
+                            <div class="circle-dot"></div>
+                            <h3 class="timeline-date">
+                                <i class="fa fa-calendar"></i> {item.range}
+                            </h3>
+                            <h4 class="timeline-title">{item.title}</h4>
+                            <p class="timeline-text">{item.org}</p>
+                        </div>
+                    ))}
+                    </div>
+                </div>
+            </div>
+        </crusher-grid>
+      </section>
+
+      <!-- ===== Skills Section ===== -->
+      <section class="section-block panel-section" id="skills" data-panel>
+        <div class="section-title">
+          <h2>Skills</h2>
+        </div>
+        
+        <div style="margin-top: 1rem;">
+            <crusher-grid style="--grid-min-width: 350px; gap: 3rem;">
+            {['Urdu | 100%', 'English | 90%', 'Linux | 85%', 'AWS & GCP | 90%', 'Terraform | 80%', 'Python | 80%'].map(skillText => {
+                const parts = skillText.split('|');
+                const name = parts[0].trim();
+                const num = parts[1].trim();
+                return (
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-weight: 600; font-size: 1.1rem;">{name}</span>
+                            <span style="font-weight: 500; color: var(--site-text-soft);">{num}</span>
+                        </div>
+                        <div style="background: var(--site-border); border-radius: 99px; height: 10px; overflow: hidden; position: relative;">
+                            <div style={`background: var(--crusher-color-brand-primary); position: absolute; left: 0; top: 0; bottom: 0; width: ${num}; border-radius: 99px;`}></div>
+                        </div>
+                    </div>
+                )
+            })}
+            </crusher-grid>
         </div>
       </section>
 
-      <section class="section-block panel-section" id="work" data-panel>
-        <SectionIntro
-          kicker="Selected work"
-          title="A few representative builds, with the full body of work living in the portfolio."
-          intro="These projects show how I think and build. The portfolio goes deeper into the experimental and visual work."
-        />
-
-        <div class="project-grid">
+      <!-- ===== Projects Section ===== -->
+      <section class="section-block panel-section" id="projects" data-panel>
+        <div class="section-title">
+          <h2>Projects</h2>
+        </div>
+        
+        <crusher-grid style="--grid-min-width: 320px; gap: 2rem;">
           {siteData.selectedProjects.map((project) => (
-            <a class="project-link" href={project.href} target="_blank" rel="noreferrer">
-              <crusher-card class="project-card">
-                <div class="project-media">
-                  <img src={project.image} alt={project.title} loading="lazy" />
+            <a class="project-link" href={project.href} target="_blank" rel="noreferrer" style="text-decoration:none; display: block; height: 100%;">
+              <div class="portfolio-item-inner project-card" style="display: flex; flex-direction: column;">
+                <div style="aspect-ratio: 16/9; overflow: hidden; margin-bottom: 1.5rem;">
+                  <img src={project.image} alt={project.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                 </div>
-                <div class="project-copy">
-                  <p class="card-kicker">{project.note}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.summary}</p>
+                <div class="project-copy" style="flex: 1; display: flex; flex-direction: column; padding: 0 1.5rem;">
+                  <p class="card-kicker" style="color: var(--crusher-color-brand-primary); margin:0 0 0.5rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;">{project.note}</p>
+                  <h3 style="margin: 0 0 1rem; color: var(--site-text); font-size: 1.25rem; font-weight: 600;">{project.title}</h3>
+                  <p style="color: var(--site-text-soft); font-size: 0.95rem; line-height: 1.6; margin: 0; padding-bottom: 1.5rem;">{project.summary}</p>
                 </div>
-              </crusher-card>
+              </div>
             </a>
           ))}
-        </div>
-
-        <div class="section-actions">
-          <a class="button-link" href={siteData.links.portfolio} target="_blank" rel="noreferrer">
-            <crusher-button variant="outline">Open full portfolio</crusher-button>
-          </a>
-        </div>
+        </crusher-grid>
       </section>
 
-      <section class="section-block panel-section" id="writing" data-panel>
-        <SectionIntro
-          kicker="Writing and research"
-          title="Technical writing that explains systems, automation, cloud work, and AI without losing practical context."
-          intro="I write when something technical deserves to be explained clearly, practically, and without unnecessary jargon."
-        />
+      <!-- ===== Services Section ===== -->
+      <section class="section-block panel-section" id="services" data-panel>
+        <div class="section-title">
+          <h2>Services</h2>
+        </div>
+        
+        <crusher-grid style="--grid-min-width: 300px; gap: 2.5rem;">
+            {siteData.capabilityGroups.map((group) => (
+                <div class="service-item-inner">
+                    <div class="icon">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <h4 style="margin:0 0 15px; font-size: 18px; font-weight: 700;">{group.title}</h4>
+                    <p style="color: var(--site-text-soft); font-size: 16px; line-height: 25px; margin: 0;">{group.summary}</p>
+                </div>
+            ))}
+        </crusher-grid>
+      </section>
 
-        <div class="project-grid publication-grid">
+      <!-- ===== Publications Section ===== -->
+      <section class="section-block panel-section" id="publications" data-panel>
+        <div class="section-title">
+          <h2>Publications</h2>
+        </div>
+        
+        <crusher-grid style="--grid-min-width: 320px; gap: 2rem;">
           {siteData.publications.map((publication) => (
-            <a class="project-link" href={publication.href} target="_blank" rel="noreferrer">
-              <crusher-card class="project-card publication-card">
-                <div class="project-media publication-media">
-                  <img src={publication.image} alt={publication.title} loading="lazy" />
+            <a class="project-link" href={publication.href} target="_blank" rel="noreferrer" style="text-decoration:none; display: block; height: 100%;">
+              <div class="portfolio-item-inner project-card" style="display: flex; flex-direction: column;">
+                <div style="aspect-ratio: 2/1; overflow: hidden; margin-bottom: 1.5rem;">
+                  <img src={publication.image} alt={publication.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                 </div>
-                <div class="project-copy">
-                  <p class="card-kicker">{publication.note}</p>
-                  <h3>{publication.title}</h3>
+                <div class="project-copy" style="flex: 1; padding: 0 1.5rem 1.5rem 1.5rem;">
+                  <p class="card-kicker" style="color: var(--crusher-color-brand-primary); margin:0 0 0.5rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;">{publication.note}</p>
+                  <h3 style="margin: 0; color: var(--site-text); font-size: 1.25rem; font-weight: 600; line-height: 1.4;">{publication.title}</h3>
                 </div>
-              </crusher-card>
+              </div>
             </a>
           ))}
+        </crusher-grid>
+      </section>
+
+      <!-- ===== References Section ===== -->
+      <section class="section-block panel-section" id="references" data-panel>
+        <div class="section-title">
+          <h2>References</h2>
+        </div>
+        
+        <crusher-grid style="--grid-min-width: 300px; gap: 2.5rem;">
+            <div class="service-item-inner">
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <h4 style="margin:0 0 15px; font-size: 18px; font-weight: 700;">Ahmer Khan</h4>
+                <p style="color: var(--site-text-soft); font-size: 16px; line-height: 25px; margin: 0;">+92 321 4499487</p>
+            </div>
+            
+            <div class="service-item-inner">
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <h4 style="margin:0 0 15px; font-size: 18px; font-weight: 700;">Asfandyar Akbar</h4>
+                <p style="color: var(--site-text-soft); font-size: 16px; line-height: 25px; margin: 0;">+92 336 9866642</p>
+            </div>
+        </crusher-grid>
+      </section>
+
+      <!-- ===== Contact Section ===== -->
+      <section class="section-block panel-section" id="contact" data-panel>
+        <div class="section-title">
+          <h2>Contact</h2>
+        </div>
+        
+        <h3 class="contact-title">Do You Have Any Questions?</h3>
+        <h4 class="contact-sub-title">I'M AT YOUR SERVICE</h4>
+        
+        <crusher-grid style="--grid-min-width: 200px; gap: 2rem; margin-bottom: 60px;">
+            <a href={`tel:${siteData.identity.phone}`} target="_blank" style="text-decoration:none;">
+                <div class="contact-info-item-inner">
+                    <div class="icon"><i class="fa fa-phone"></i></div>
+                    <h4>Call</h4>
+                    <p>{siteData.identity.phone}</p>
+                </div>
+            </a>
+            
+            <a href="https://maps.app.goo.gl/sUELDzVFdkHNBYg2A" target="_blank" style="text-decoration:none;">
+                <div class="contact-info-item-inner">
+                    <div class="icon"><i class="fa fa-map-marker"></i></div>
+                    <h4>Location</h4>
+                    <p>{siteData.identity.location}</p>
+                </div>
+            </a>
+            
+            <a href={`mailto:${siteData.identity.email}`} target="_blank" style="text-decoration:none;">
+                <div class="contact-info-item-inner">
+                    <div class="icon"><i class="fa fa-envelope"></i></div>
+                    <h4>Email</h4>
+                    <p>{siteData.identity.email}</p>
+                </div>
+            </a>
+            
+            <a href="https://muhammadhassaanjaved.com/" target="_blank" style="text-decoration:none;">
+                <div class="contact-info-item-inner">
+                    <div class="icon"><i class="fa fa-globe"></i></div>
+                    <h4>Website</h4>
+                    <p>muhammadhassaanjaved.com</p>
+                </div>
+            </a>
+        </crusher-grid>
+
+        <h3 class="contact-title">SEND ME AN EMAIL</h3>
+        <h4 class="contact-sub-title">I'M VERY RESPONSIVE TO MESSAGES</h4>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <form style="display:flex; flex-direction:column; gap:1.5rem;">
+                <div style="display:flex; gap:1.5rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <input type="text" placeholder="Name" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:99px; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif;" />
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <input type="email" placeholder="Email" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:99px; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif;" />
+                    </div>
+                </div>
+                <input type="text" placeholder="Subject" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:99px; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif;" />
+                <textarea placeholder="Message" rows="6" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:1rem; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif; resize: vertical;"></textarea>
+                <div style="margin-top: 0.5rem;">
+                    <crusher-button type="button">Send Message</crusher-button>
+                </div>
+            </form>
         </div>
       </section>
 
-      <section class="section-block surface-section panel-section" id="credentials" data-panel>
-        <SectionIntro
-          kicker="Credentials"
-          title="Experience, certifications, and education that anchor the broader profile."
-          intro="A few anchors from my experience, certifications, and education."
-        />
-
-        <div class="credential-grid">
-          <crusher-card class="timeline-card">
-            <p class="card-kicker">Experience</p>
-            <crusher-timeline>
-              {siteData.experience.map((item) => (
-                <crusher-timeline-item>
-                  <span slot="date" class="timeline-date">{item.range}</span>
-                  <h4>{item.title}</h4>
-                  <p>{item.org}</p>
-                </crusher-timeline-item>
-              ))}
-            </crusher-timeline>
-          </crusher-card>
-
-          <crusher-card class="timeline-card">
-            <p class="card-kicker">Certifications</p>
-            <crusher-timeline>
-              {siteData.credentials.map((item) => (
-                <crusher-timeline-item>
-                  <span slot="date" class="timeline-date">{item.range}</span>
-                  <h4>{item.title}</h4>
-                  <p>{item.org}</p>
-                </crusher-timeline-item>
-              ))}
-            </crusher-timeline>
-          </crusher-card>
-
-          <crusher-card class="timeline-card">
-            <p class="card-kicker">Education</p>
-            <crusher-timeline>
-              {siteData.education.map((item) => (
-                <crusher-timeline-item>
-                  <span slot="date" class="timeline-date">{item.range}</span>
-                  <h4>{item.title}</h4>
-                  <p>{item.org}</p>
-                </crusher-timeline-item>
-              ))}
-            </crusher-timeline>
-          </crusher-card>
-        </div>
-      </section>
-
-      <section class="section-block surface-section contact-block panel-section" id="contact" data-panel>
-        <SectionIntro
-          kicker="Contact"
-          title="If you want to work together, start here."
-          intro="The best first step is direct contact. From there you can also move into the portfolio, tools, and framework surfaces."
-        />
-
-        <div class="contact-grid">
-          <crusher-card class="contact-card contact-card-primary">
-            <p class="card-kicker">Primary contact</p>
-            <h3>{siteData.identity.email}</h3>
-            <p>I am available for consulting, infrastructure work, automation systems, and selected product collaborations.</p>
-            <div class="hero-actions compact-actions">
-              <a class="button-link" href={siteData.links.email}>
-                <crusher-button>Email me</crusher-button>
-              </a>
-              <a class="button-link" href={siteData.links.cv} target="_blank" rel="noreferrer">
-                <crusher-button variant="outline">Download CV</crusher-button>
-              </a>
-            </div>
-          </crusher-card>
-
-          <crusher-card class="contact-card">
-            <p class="card-kicker">Network and writing</p>
-            <div class="link-stack">
-              <a href={siteData.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href={siteData.links.github} target="_blank" rel="noreferrer">GitHub</a>
-              <a href={siteData.links.medium} target="_blank" rel="noreferrer">Medium</a>
-              <a href={siteData.links.maps} target="_blank" rel="noreferrer">Location</a>
-            </div>
-          </crusher-card>
-
-          <crusher-card class="contact-card">
-            <p class="card-kicker">Ecosystem routes</p>
-            <div class="link-stack">
-              <a href={siteData.links.portfolio} target="_blank" rel="noreferrer">Portfolio</a>
-              <a href={siteData.links.tools} target="_blank" rel="noreferrer">Tools hub</a>
-              <a href={siteData.links.uiKit} target="_blank" rel="noreferrer">Crusher UI Kit</a>
-              <a href={siteData.links.phone}>Phone</a>
-            </div>
-          </crusher-card>
-        </div>
-      </section>
-    </main>
-  </div>
-</BaseLayout>
+</MainLayout>

@@ -1,0 +1,128 @@
+---
+// Import the framework and a base theme.
+// The 'glass' theme is a good starting point for a clean, modern feel.
+import 'crusher-ui-kit/runtime';
+import 'crusher-ui-kit/styles/tokens.css';
+import 'crusher-ui-kit/styles/modes.css';
+import 'crusher-ui-kit/styles/semantic.css';
+import 'crusher-ui-kit/styles/bridge.css';
+import 'crusher-ui-kit/styles/code-theme.css';
+import 'crusher-ui-kit/styles/theme-scenes.css';
+import 'crusher-ui-kit/styles/dialect-overrides.css';
+import 'crusher-ui-kit/themes/glass.css';
+import '../styles/site.css';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="neumorph" data-mode="dark" data-density="comfortable">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Muhammad Hassaan Javed's personal site" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<!-- Google Fonts for Poppins -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+		
+		<!-- FontAwesome (matching the old site) -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	</head>
+	<body>
+		<!-- Restore the atmospheric background layers -->
+		<div class="site-scene" aria-hidden="true">
+			<div class="site-glow site-glow-a"></div>
+			<div class="site-glow site-glow-b"></div>
+			<div class="site-glow site-glow-c"></div>
+			<div class="site-grid"></div>
+		</div>
+
+		<!-- Re-enable runtime features -->
+		<crusher-style-switcher></crusher-style-switcher>
+		<crusher-toast-center></crusher-toast-center>
+
+		<script>
+			// Force the theme to neumorph and hide dialects from portfolio layout
+			localStorage.setItem('crusher-theme', 'neumorph');
+			document.documentElement.setAttribute('data-theme', 'neumorph');
+			
+			customElements.whenDefined('crusher-style-switcher').then(() => {
+				const sw = document.querySelector('crusher-style-switcher');
+				if (sw && sw.shadowRoot) {
+					const style = document.createElement('style');
+					style.textContent = '.dialect-row, h4:last-of-type { display: none !important; }';
+					sw.shadowRoot.appendChild(style);
+				}
+			});
+		</script>
+
+		<!-- Restore the structural layout expected by site.css and site.js -->
+		<div class="site-shell">
+			<aside class="site-rail" data-site-rail>
+				<div class="rail-inner">
+					<a class="brand" href="#home" aria-label="Muhammad Hassaan Javed">
+						<span class="brand-name"><span>H</span>assaan</span>
+					</a>
+
+					<nav class="rail-nav" aria-label="Primary">
+						<a data-rail-link href="#home"><i class="fa fa-home"></i> Home</a>
+						<a data-rail-link href="#about"><i class="fa fa-user"></i> About</a>
+						<a data-rail-link href="#qualifications"><i class="fa fa-mortar-board"></i> Qualifications</a>
+						<a data-rail-link href="#skills"><i class="fa fa-star"></i> Skills</a>
+						<a data-rail-link href="#projects"><i class="fa fa-briefcase"></i> Projects</a>
+						<a data-rail-link href="#services"><i class="fa fa-tags"></i> Services</a>
+						<a data-rail-link href="#publications"><i class="fa fa-book"></i> Publications</a>
+						<a data-rail-link href="#references"><i class="fa fa-address-card"></i> References</a>
+						<a data-rail-link href="#contact"><i class="fa fa-comments"></i> Contact</a>
+					</nav>
+
+					<div class="rail-footer">
+						<p class="rail-copyright">© <span data-current-year></span> Hassaan</p>
+					</div>
+				</div>
+			</aside>
+
+			<button class="rail-toggle" type="button" data-rail-toggle aria-label="Open navigation">
+				<span class="rail-toggle-icon" aria-hidden="true">Menu</span>
+			</button>
+			<button class="rail-overlay" type="button" data-rail-overlay aria-label="Close navigation"></button>
+
+			<main class="site-main" id="top">
+				<slot />
+			</main>
+		</div>
+
+		<script>
+			// Load the framework runtime on the client only
+			import '../scripts/site.js';
+
+			// Legacy overlay physics
+			document.addEventListener('DOMContentLoaded', () => {
+				const panels = document.querySelectorAll('.panel-section');
+				const links = document.querySelectorAll('[data-rail-link]');
+				
+				links.forEach(link => {
+					link.addEventListener('click', () => {
+						const currentActive = document.querySelector('.panel-section.is-active');
+						if (currentActive) {
+							panels.forEach(p => p.classList.remove('back-section'));
+							currentActive.classList.add('back-section');
+							setTimeout(() => {
+								currentActive.classList.remove('back-section');
+							}, 1000);
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

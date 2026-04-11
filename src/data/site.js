@@ -5,9 +5,9 @@ export const siteData = {
     alias: 'Crusher',
     title: 'Cloud & DevOps Engineer',
     summary:
-      'Top-Rated freelancer with 5+ years building cloud infrastructure, CI/CD pipelines, and AI-powered automation systems. Google-certified. Based in Pakistan, working globally.',
+      'I build and scale cloud infrastructure, CI/CD pipelines, and AI-driven automation workflows. From early architecture to production rollout, I focus on systems that run quietly and reliably.',
     intro:
-      'Since 2020 I\'ve shipped production infrastructure across AWS, GCP, and Azure — containerised workloads, Terraform-managed environments, end-to-end delivery pipelines, and AI workflows for real clients and products. I work hands-on from architecture through to deployment.',
+      'Over the last five years, I\'ve had the privilege of working with teams globally to ship production-grade environments across AWS, GCP, and Azure. Whether it\'s migrating workloads to Kubernetes, writing exact Terraform modules, or integrating LLMs into existing products — I bring a hands-on, engineering-first approach to complex problems.',
     location: 'Pakistan',
     email: 'muhammadhassaanjaved99@gmail.com',
     phone: '+92 302 7538580',
@@ -38,7 +38,7 @@ export const siteData = {
     {
       label: 'Experience',
       value: '5+ Years',
-      meta: 'Top-Rated on Upwork since August 2020. Clients across US, Europe, and APAC.',
+      meta: 'Partnering with teams across the US, Europe, and APAC to deliver reliable infrastructure.',
       tone: 'brand',
     },
     {
