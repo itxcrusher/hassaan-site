@@ -1,15 +1,10 @@
 ---
-// Import the framework and a base theme.
-// The 'glass' theme is a good starting point for a clean, modern feel.
 import 'crusher-ui-kit/runtime';
 import 'crusher-ui-kit/styles/tokens.css';
 import 'crusher-ui-kit/styles/modes.css';
 import 'crusher-ui-kit/styles/semantic.css';
 import 'crusher-ui-kit/styles/bridge.css';
-import 'crusher-ui-kit/styles/code-theme.css';
-import 'crusher-ui-kit/styles/theme-scenes.css';
-import 'crusher-ui-kit/styles/dialect-overrides.css';
-import 'crusher-ui-kit/themes/glass.css';
+import 'crusher-ui-kit/themes/minimal.css';
 import '../styles/site.css';
 
 export interface Props {
@@ -20,59 +15,43 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="neumorph" data-mode="dark" data-density="comfortable">
+<html lang="en" data-theme="minimal" data-mode="light">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Muhammad Hassaan Javed's personal site" />
+		<meta name="description" content="Muhammad Hassaan Javed — Senior DevOps & Cloud Engineer" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
-		<!-- Google Fonts for Poppins -->
+		<!-- Google Fonts — Poppins + Clicker Script (matching old site) -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-		
-		<!-- FontAwesome (matching the old site) -->
+		<link href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+		<!-- Font Awesome (matching old site icon set) -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 	</head>
 	<body>
-		<!-- Restore the atmospheric background layers -->
-		<div class="site-scene" aria-hidden="true">
-			<div class="site-glow site-glow-a"></div>
-			<div class="site-glow site-glow-b"></div>
-			<div class="site-glow site-glow-c"></div>
-			<div class="site-grid"></div>
-		</div>
-
-		<!-- Re-enable runtime features -->
+		<!-- Style switcher + toast (keep from framework) -->
 		<crusher-style-switcher></crusher-style-switcher>
 		<crusher-toast-center></crusher-toast-center>
 
-		<script>
-			// Force the theme to neumorph and hide dialects from portfolio layout
-			localStorage.setItem('crusher-theme', 'neumorph');
-			document.documentElement.setAttribute('data-theme', 'neumorph');
-			
-			customElements.whenDefined('crusher-style-switcher').then(() => {
-				const sw = document.querySelector('crusher-style-switcher');
-				if (sw && sw.shadowRoot) {
-					const style = document.createElement('style');
-					style.textContent = '.dialect-row, h4:last-of-type { display: none !important; }';
-					sw.shadowRoot.appendChild(style);
-				}
-			});
-		</script>
-
-		<!-- Restore the structural layout expected by site.css and site.js -->
 		<div class="site-shell">
+			<!-- Sidebar rail — mirrors old .aside -->
 			<aside class="site-rail" data-site-rail>
 				<div class="rail-inner">
-					<a class="brand" href="#home" aria-label="Muhammad Hassaan Javed">
-						<span class="brand-name"><span>H</span>assaan</span>
-					</a>
+					<!-- Brand — matches old "Crusher" logo with corner brackets -->
+					<div class="logo">
+						<a href="#home" data-rail-link><span>C</span>rusher</a>
+					</div>
 
+					<!-- Mobile toggler button -->
+					<button class="rail-toggle" type="button" data-rail-toggle aria-label="Open navigation">
+						<span class="rail-toggle-icon" aria-hidden="true"></span>
+					</button>
+
+					<!-- Navigation — same links as old site -->
 					<nav class="rail-nav" aria-label="Primary">
 						<a data-rail-link href="#home"><i class="fa fa-home"></i> Home</a>
 						<a data-rail-link href="#about"><i class="fa fa-user"></i> About</a>
@@ -85,31 +64,30 @@ const { title } = Astro.props;
 						<a data-rail-link href="#contact"><i class="fa fa-comments"></i> Contact</a>
 					</nav>
 
+					<!-- Footer copyright -->
 					<div class="rail-footer">
-						<p class="rail-copyright">© <span data-current-year></span> Hassaan</p>
+						<p class="rail-copyright">Copyright &copy; Created by <a href="https://www.linkedin.com/in/itxcrusher" target="_blank" style="color: var(--skin-color); text-decoration: none;">Hassaan</a></p>
 					</div>
 				</div>
 			</aside>
 
-			<button class="rail-toggle" type="button" data-rail-toggle aria-label="Open navigation">
-				<span class="rail-toggle-icon" aria-hidden="true">Menu</span>
-			</button>
+			<!-- Mobile overlay (tap to close nav) -->
 			<button class="rail-overlay" type="button" data-rail-overlay aria-label="Close navigation"></button>
 
+			<!-- Main content area — panels stack here -->
 			<main class="site-main" id="top">
 				<slot />
 			</main>
 		</div>
 
 		<script>
-			// Load the framework runtime on the client only
 			import '../scripts/site.js';
 
-			// Legacy overlay physics
+			// Back-section animation on panel switch (matches old site slide effect)
 			document.addEventListener('DOMContentLoaded', () => {
 				const panels = document.querySelectorAll('.panel-section');
 				const links = document.querySelectorAll('[data-rail-link]');
-				
+
 				links.forEach(link => {
 					link.addEventListener('click', () => {
 						const currentActive = document.querySelector('.panel-section.is-active');
@@ -118,7 +96,7 @@ const { title } = Astro.props;
 							currentActive.classList.add('back-section');
 							setTimeout(() => {
 								currentActive.classList.remove('back-section');
-							}, 1000);
+							}, 600);
 						}
 					});
 				});
