@@ -270,7 +270,7 @@ button, input, textarea, select { font: inherit; }
   overflow: hidden;
 }
 
-/* Each panel section — matches old .section fixed positioning */
+/* Each panel section — fills the full right area (full-width background like old site) */
 .panel-section {
   position: absolute;
   top: 0; bottom: 0; left: 0; right: 0;
@@ -278,34 +278,39 @@ button, input, textarea, select { font: inherit; }
   border-left: 1px solid var(--skin-color);
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0 30px;
+  /* no side padding here — section-block handles centering via smart padding */
   opacity: 0;
   z-index: 0;
   pointer-events: none;
-  transform: translateX(60px);
-  transition:
-    opacity 0.3s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .panel-section.is-active {
   opacity: 1;
   pointer-events: auto;
   z-index: 2;
-  transform: translateX(0);
+  animation: slidePanel 1s ease forwards;
 }
 
 .panel-section.back-section {
   z-index: 1;
+  opacity: 1;
 }
 
-/* Non-home sections get top/bottom padding */
+@keyframes slidePanel {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(0); }
+}
+
+/* Non-home sections: full-width panel, content centered at max 1100px.
+   Smart padding: at least 30px each side, expands symmetrically on wide screens
+   so content never exceeds 1100px — matches old .section { padding: 0 30px } +
+   inner .container { max-width: 1100px; margin: auto }  */
 .section-block {
   padding-top: 60px;
   padding-bottom: 70px;
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
+  padding-left:  max(30px, calc((100% - 1100px) / 2));
+  padding-right: max(30px, calc((100% - 1100px) / 2));
 }
 
 /* ============================================================
@@ -659,7 +664,16 @@ crusher-style-switcher {
 
   .panel-section {
     border-left: none;
+  }
+
+  /* Home panel: add top clearance for the hamburger toggle button */
+  .home.panel-section {
     padding-top: 70px;
+  }
+
+  /* Non-home sections: smart side padding + 70px nav clearance + 60px design = 130px top */
+  .section-block {
+    padding-top: 130px;
   }
 
   .rail-toggle {
@@ -685,8 +699,603 @@ crusher-style-switcher {
   }
 }
 
+/* ============================================================
+   HIDE crusher-ui-kit style switcher — we use our own
+   ============================================================ */
+crusher-style-switcher { display: none !important; }
+
+/* ============================================================
+   CUSTOM COLOUR & MODE SWITCHER — matches old site exactly
+   ============================================================ */
+.style-switcher {
+  position: fixed;
+  right: 0;
+  top: 60px;
+  padding: 15px;
+  width: 200px;
+  border: 1px solid var(--bg-black-50);
+  background: var(--bg-black-100);
+  z-index: 200;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+}
+
+.style-switcher.open {
+  transform: translateX(-25px);
+}
+
+.style-switcher .s-icon {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  font-size: 20px;
+  background: var(--bg-black-100);
+  color: var(--text-black-900);
+  right: 100%;
+  border: 1px solid var(--bg-black-50);
+  margin-right: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.style-switcher .style-switcher-toggler { top: 0; }
+.style-switcher .day-night { top: 55px; }
+
+.style-switcher h4 {
+  margin: 0 0 10px;
+  color: var(--text-black-700);
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.style-switcher .colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.style-switcher .colors span {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.style-switcher .colors span:hover { transform: scale(1.15); }
+.style-switcher .color-1 { background: #37b182; }
+.style-switcher .color-2 { background: #1854b4; }
+.style-switcher .color-3 { background: #fa5b0f; }
+.style-switcher .color-4 { background: #f021b2; }
+.style-switcher .color-5 { background: #ec1839; }
+
+/* ============================================================
+   CONTACT FORM — feedback overlay (Lottie animation)
+   ============================================================ */
+#form-container {
+  position: relative;
+}
+
+#feedback-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(242, 242, 252, 0.85);
+  z-index: 10;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+html.dark #feedback-overlay {
+  background: rgba(21, 21, 21, 0.85);
+}
+
+#feedback-canvas {
+  width: 260px;
+  height: 260px;
+}
+
+#form-container.processing form {
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* ============================================================
+   DARK MODE — applied via html.dark class
+   ============================================================ */
+html.dark {
+  --bg-black-900: #151515;
+  --bg-black-100: #222222;
+  --bg-black-50: #393939;
+  --text-black-900: #ffffff;
+  --text-black-700: #e9e9e9;
+}
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.padd-15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* ============================================================
+   HOME SECTION — flex layout matching old site exactly
+   ============================================================ */
+.home-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1100px;
+  width: 100%;
+  margin: auto;
+  padding: 0 30px;
+  min-height: 100vh;
+}
+
+.home-info {
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+
+h3.hello {
+  font-size: 28px;
+  margin: 15px 0;
+  color: var(--text-black-900);
+  font-weight: 600;
+}
+
+h3.hello .name,
+h3.hello span {
+  font-family: 'Clicker Script', cursive;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--skin-color);
+}
+
+h3.my-profession {
+  font-size: 30px;
+  margin: 15px 0;
+  color: var(--text-black-900);
+  font-weight: 600;
+}
+
+.typed-text {
+  color: var(--skin-color);
+}
+
+/* typed.js target — skin color on the animating word */
+.typing {
+  color: var(--skin-color);
+}
+
+.home-info p {
+  margin-bottom: 70px;
+  font-size: 20px;
+  color: var(--text-black-700);
+}
+
+.home-img {
+  flex: 0 0 40%;
+  max-width: 40%;
+  text-align: center;
+  position: relative;
+}
+
+.home-img::before {
+  content: '';
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-top: 10px solid var(--skin-color);
+  border-left: 10px solid var(--skin-color);
+  left: -15px;
+  top: -45px;
+}
+
+.home-img::after {
+  content: '';
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-bottom: 10px solid var(--skin-color);
+  border-right: 10px solid var(--skin-color);
+  right: -15px;
+  bottom: -40px;
+}
+
+.home-img img {
+  margin: auto;
+  border-radius: 5px;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* ============================================================
+   ABOUT SECTION — rows and columns
+   ============================================================ */
+.about-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.about-text {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 15px;
+}
+
+.about-text h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: var(--text-black-900);
+}
+
+.about-text h3 span {
+  color: var(--skin-color);
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--text-black-700);
+}
+
+.personal-info {
+  flex: 0 0 60%;
+  max-width: 60%;
+  margin-top: 40px;
+  padding: 0 15px;
+}
+
+.lang-skills {
+  flex: 0 0 40%;
+  max-width: 40%;
+  margin-top: 40px;
+  padding: 0 15px;
+}
+
+/* Language/skill progress bars */
+.skill-item {
+  margin-bottom: 25px;
+}
+
+.skill-item h5 {
+  line-height: 40px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-black-900);
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.progress {
+  background-color: var(--bg-black-50);
+  height: 7px;
+  border-radius: 4px;
+  width: 100%;
+  position: relative;
+}
+
+.progress-in {
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  border-radius: 4px;
+  background-color: var(--skin-color);
+}
+
+.skill-percent {
+  position: absolute;
+  right: 0;
+  color: var(--text-black-900);
+  top: -40px;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+/* ============================================================
+   ABOUT — Interests/Hobbies/Goals 2×2 grid
+   ============================================================ */
+.timeline-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+/* 2×2: two columns, each 50% */
+.timeline-col-half {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+
+/* ============================================================
+   QUALIFICATIONS — 2-column flex, matches old site .education/.experience 50%
+   ============================================================ */
+.qual-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.qual-grid > * {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+/* ============================================================
+   SKILLS SECTION — category groups + tile grid
+   ============================================================ */
+.skills-category {
+  margin-bottom: 35px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-tile {
+  background-color: var(--bg-black-100);
+  border: 1px solid var(--bg-black-50);
+  border-left: 3px solid var(--skin-color);
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-tile::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--skin-color);
+  flex-shrink: 0;
+}
+
+.skill-tile:hover {
+  box-shadow: 0 0 12px rgba(48, 46, 77, 0.15);
+  transform: translateY(-2px);
+}
+
+.skill-tile h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-black-900);
+}
+
+/* ============================================================
+   PORTFOLIO / PROJECTS — 3-column grid
+   ============================================================ */
+.portfolio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.portfolio-item {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+
+.portfolio-item > a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.portfolio-img {
+  overflow: hidden;
+  line-height: 0;
+  aspect-ratio: 1 / 1;   /* square thumbnails */
+}
+
+.portfolio-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-item-inner:hover .portfolio-img img {
+  transform: scale(1.05);
+}
+
+/* Text block inside a card — consistent padding and fixed height */
+.portfolio-text {
+  padding: 12px 15px 15px;
+}
+
+.portfolio-label {
+  color: var(--skin-color);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 5px;
+}
+
+.portfolio-title {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-black-900);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(0.95rem * 1.45 * 2);
+}
+
+.portfolio-desc {
+  margin: 0;
+  font-size: 0.83rem;
+  color: var(--text-black-700);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(0.83rem * 1.5 * 2);
+}
+
+/* ============================================================
+   SERVICES — 3-column flex grid
+   ============================================================ */
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.service-item {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+
+/* ============================================================
+   CONTACT — info grid + form
+   ============================================================ */
+.contact-info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 60px;
+}
+
+.contact-info-link {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-form-wrap {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.form-item {
+  margin-bottom: 30px;
+}
+
+.form-control {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  background: var(--bg-black-100);
+  border: 1px solid var(--bg-black-50);
+  padding: 10px 25px;
+  font-size: 16px;
+  color: var(--text-black-700);
+  font-family: 'Poppins', sans-serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
+}
+
+textarea.form-control {
+  height: 140px;
+  resize: vertical;
+}
+
+/* ============================================================
+   RESPONSIVE ADDITIONS
+   ============================================================ */
 @media (max-width: 991px) {
-  .section-block {
-    padding-top: 40px;
+  .portfolio-item,
+  .service-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .timeline-col-half {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .qual-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-info {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .home-img {
+    display: none;
+  }
+
+  .personal-info,
+  .lang-skills {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .contact-info-link,
+  .portfolio-item,
+  .service-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
   }
 }

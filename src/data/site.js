@@ -124,24 +124,28 @@ export const siteData = {
       href: 'https://medium.com/@itxcrusher/freysa-ai-a-comprehensive-analysis-b48aebf750d1',
       image: '/images/publications/freysa.jpg',
       note: 'AI systems · Analysis',
+      summary: 'A deep-dive into Freysa, the AI agent that crowdsourced attempts to break its constraints — and what it reveals about LLM safety.',
     },
     {
       title: 'How I automated YouTube channel data collection and saved hours of manual work',
       href: 'https://medium.com/@itxcrusher/how-i-automated-youtube-channel-data-collection-and-saved-hours-of-manual-work-d7a50047f0a7',
       image: '/images/publications/yt-metadata-automation.webp',
       note: 'Automation · Python',
+      summary: 'A Python script that pulls channel metadata, video stats, and growth signals via the YouTube Data API — no manual spreadsheets needed.',
     },
     {
       title: 'Lip-reading AI: innovation or ethical dilemma?',
       href: 'https://medium.com/@itxcrusher/lip-reading-ai-innovation-or-ethical-dilemma-0024004de0da',
       image: '/images/publications/lip-reading-ai.webp',
       note: 'AI · Ethics',
+      summary: 'Examining how lip-reading AI models work, the accessibility benefits they unlock, and the surveillance risks they introduce.',
     },
     {
       title: 'Building a DevOps pipeline in GCP',
       href: 'https://medium.com/@itxcrusher/building-a-devops-pipeline-in-gcp-46d9e36cc6b6',
       image: '/images/publications/2.jpeg',
       note: 'GCP · CI/CD',
+      summary: 'Step-by-step walkthrough of a production-ready CI/CD pipeline on Google Cloud using Cloud Build, Artifact Registry, and Cloud Run.',
     },
   ],
   experience: [
@@ -165,12 +169,12 @@ export const siteData = {
     {
       range: 'Jul 2024',
       title: 'Associate Cloud Engineer',
-      org: 'Google Cloud',
+      org: 'Google',
     },
     {
       range: 'Jun 2024',
       title: 'AI Engineer Associate',
-      org: 'Microsoft Azure',
+      org: 'Microsoft',
     },
     {
       range: 'May 2024',
@@ -178,10 +182,47 @@ export const siteData = {
       org: 'GitHub',
     },
     {
+      range: 'Apr 2024',
+      title: 'Cloud Computing Foundations',
+      org: 'Google',
+    },
+    {
       range: 'Jul 2023',
       title: 'Cybersecurity Essentials',
       org: 'Cisco',
     },
+    {
+      range: 'May 2023',
+      title: 'Responsive Web Design',
+      org: 'freeCodeCamp',
+    },
+  ],
+  certificates: [
+    { range: 'Feb 2024', title: 'Freelancing Training', org: 'Punjab IT Board' },
+    { range: 'Nov 2023', title: 'Social Media Marketing', org: 'Punjab IT Board' },
+    { range: 'Oct 2023', title: 'Freelancing', org: 'DigiSkills' },
+    { range: 'Oct 2023', title: 'WordPress', org: 'DigiSkills' },
+    { range: 'Sep 2023', title: 'UI/UX Design', org: 'Punjab IT Board' },
+    { range: 'May 2023', title: 'Content Marketing and Advertising', org: 'Punjab IT Board' },
+    { range: 'Feb 2022', title: 'Full Stack Designer and Developer', org: 'Skills Improvement Foundation' },
+  ],
+  workshops: [
+    { range: 'Apr 2024', title: 'AI Skills Challenge', org: 'Microsoft Learning 365' },
+    { range: 'Mar 2024', title: 'Azure Fundamentals Cloud Skill Challenge', org: 'Microsoft Learn Student Ambassadors' },
+    { range: 'Jan 2024', title: 'Cloud Seekho S5', org: 'Google Developers Group' },
+    { range: 'Aug 2023', title: 'Android Seekho S2', org: 'Google Developers Group' },
+    { range: 'Jul 2022', title: 'Resume Website Building', org: 'Microsoft Learn Student Ambassadors' },
+  ],
+  courses: [
+    { range: '2024', title: 'DevOps Engineering', org: 'ITM Training Program' },
+    { range: '2024', title: 'Cloud Computing', org: 'ITM Training Program' },
+    { range: '2023', title: '.Net', org: 'ITM Training Program' },
+    { range: '2023', title: 'Data Structures', org: 'ITM Training Program' },
+    { range: '2023', title: 'Database Management Systems', org: 'ITM Training Program' },
+    { range: '2023', title: 'Design and Analysis of Algorithms', org: 'ITM Training Program' },
+    { range: '2023', title: 'Introduction to Software Engineering', org: 'ITM Training Program' },
+    { range: '2023', title: 'Object Oriented Programming', org: 'ITM Training Program' },
+    { range: '2023', title: 'Programming Fundamentals', org: 'ITM Training Program' },
   ],
   education: [
     {

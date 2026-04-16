@@ -3,331 +3,425 @@ import MainLayout from '../layouts/MainLayout.astro';
 import { siteData } from '../data/site.js';
 
 const pageTitle = `${siteData.identity.name} | Personal site`;
+
+const devopsSkills = ['Linux', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'Ansible', 'Git', 'GitHub', 'Bash', 'CI/CD'];
+const cloudSkills = ['AWS', 'Azure', 'GCP', 'IaaS', 'PaaS', 'SaaS', 'Serverless', 'Security', 'Management', 'Multi-Cloud', 'Cloud Migration'];
+const programmingSkills = ['Python', 'Java', 'C++', 'C#', 'OOP', 'Agile', 'TDD', 'Ajax', 'PHP'];
+const devSkills = ['HTML', 'CSS', 'SASS', 'Bootstrap', 'JavaScript', 'jQuery', 'React', 'Angular', 'Express.js', 'Node.js', '.Net', 'Kotlin', 'Flask', 'Django'];
+const dbSkills = ['SQL', 'MySQL', 'PostgreSQL', 'MongoDB', 'Schema', 'Normalization', 'Joins'];
+const marketingSkills = ['SEO', 'Content Writing', 'Keyword Research', 'WordPress'];
+const designSkills = ['Figma', 'Adobe XD', 'Adobe Photoshop', 'UI/UX Design'];
 ---
 
 <MainLayout title={pageTitle}>
-      <!-- ===== Home Section ===== -->
-      <section class="home panel-section" id="home" data-panel>
-        <div style="display: flex; flex-wrap: wrap; min-height: 100vh; align-items: center;">
-            <div style="flex: 0 0 60%; max-width: 60%; padding: 0 15px;">
-                <h3 style="font-size: 28px; margin: 15px 0;">Hi, I'm <span style="font-family: 'Clicker Script', cursive; font-size: 30px; font-weight: 700; color: var(--crusher-color-brand-primary)">Hassaan</span></h3>
-                <h3 style="font-size: 30px; margin: 15px 0;">A Freelance <span style="color: var(--crusher-color-brand-primary)">Cloud Engineer</span></h3>
-                <p style="margin-bottom: 70px; font-size: 20px; color: var(--site-text-soft);">I'm a Top-Rated Freelancer with an extensive experience for over 5 years</p>
-                <a href={siteData.links.tools} style="font-size: 16px; font-weight: 500; padding: 12px 35px; color: white; border-radius: 10px; background: var(--crusher-color-brand-primary); display: inline-block; white-space: nowrap; border: none; transition: transform 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Use Awesome Web Utility Tools for Free</a>
-            </div>
-            
-            <div style="flex: 0 0 40%; max-width: 40%; text-align: center; position: relative; padding: 0 15px;">
-                <div style="position: absolute; height: 80px; width: 80px; border-top: 10px solid var(--crusher-color-brand-primary); border-left: 10px solid var(--crusher-color-brand-primary); left: 20px; top: -40px;"></div>
-                <img src="/images/portrait.jpg" alt="Hassaan" loading="eager" style="margin: auto; border-radius: 10px; height: 400px; display: inline-block;" />
-                <div style="position: absolute; height: 80px; width: 80px; border-bottom: 10px solid var(--crusher-color-brand-primary); border-right: 10px solid var(--crusher-color-brand-primary); right: 20px; bottom: -40px;"></div>
-            </div>
-        </div>
-      </section>
 
-      <!-- ===== About Section ===== -->
-      <section class="section-block panel-section" id="about" data-panel>
-        <div class="section-title">
-          <h2>About Me</h2>
-        </div>
-        
-        <crusher-grid style="--grid-min-width: 300px; gap: 3rem;">
-            <crusher-stack>
-                <h3 style="font-size: 1.6rem;">My name is <span style="color: var(--crusher-color-brand-primary)">Muhammad Hassaan Javed</span> and I am a <span style="color: var(--crusher-color-brand-primary)">Freelancer</span></h3>
-                <p style="line-height: 1.8; color: var(--site-text-soft); font-size: 1.05rem;">{siteData.identity.summary} {siteData.identity.intro}</p>
-            </crusher-stack>
-            
-            <crusher-stack>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.5rem;">
-                    <li style="display: flex; gap: 1rem; align-items:center; border-bottom: 1px solid var(--site-border); padding-bottom: 0.5rem; font-size: 1.05rem;">
-                        <strong style="min-width: 80px;">Email:</strong> <a href={siteData.links.email} style="color: var(--site-text-soft); text-decoration: none;">{siteData.identity.email}</a>
-                    </li>
-                    <li style="display: flex; gap: 1rem; align-items:center; border-bottom: 1px solid var(--site-border); padding-bottom: 0.5rem; font-size: 1.05rem;">
-                        <strong style="min-width: 80px;">Website:</strong> <a href={siteData.links.site} target="_blank" style="color: var(--site-text-soft); text-decoration: none;">muhammadhassaanjaved.com</a>
-                    </li>
-                    <li style="display: flex; gap: 1rem; align-items:center; border-bottom: 1px solid var(--site-border); padding-bottom: 0.5rem; font-size: 1.05rem;">
-                        <strong style="min-width: 80px;">Portfolio:</strong> <a href={siteData.links.portfolio} target="_blank" style="color: var(--site-text-soft); text-decoration: none;">portfolio.muhammadhassaanjaved.com</a>
-                    </li>
-                </ul>
-                <div style="margin-top: 1.5rem;">
-                    <a href="#contact" data-rail-link>
-                        <crusher-button>Contact Now</crusher-button>
-                    </a>
-                </div>
-            </crusher-stack>
-        </crusher-grid>
+  <!-- ===== Home Section ===== -->
+  <section class="home panel-section" id="home" data-panel>
+    <div class="home-container">
+      <div class="home-info padd-15">
+        <h3 class="hello">Hi, I'm <span class="name">Hassaan</span></h3>
+        <h3 class="my-profession">A Freelance <span class="typing"></span> Engineer</h3>
+        <p>I'm a Top-Rated Freelancer with an extensive experience for over 5 years</p>
+        <a href={siteData.links.tools} class="btn">Use Awesome Web Utility Tools for Free</a>
+      </div>
 
-        <crusher-grid style="--grid-min-width: 250px; gap: 2rem; margin-top: 4rem;">
-            <div>
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Interests</h3>
-                <div class="timeline-box">
-                    <div class="timeline shadow-dark">
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">DevOps Engineering</h4></div>
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Cloud Computing</h4></div>
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Artificial Intelligence</h4></div>
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Business Development</h4></div>
-                    </div>
-                </div>
+      <div class="home-img padd-15">
+        <img src="/images/portrait.jpg" alt="Hassaan" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About Section ===== -->
+  <section class="section-block panel-section" id="about" data-panel>
+    <div class="section-title"><h2>About Me</h2></div>
+
+    <div class="about-row">
+      <!-- Left: bio text -->
+      <div class="about-text">
+        <h3>My name is <span>{siteData.identity.name}</span> and I am a <span>Freelancer</span></h3>
+        <p>{siteData.identity.summary} {siteData.identity.intro}</p>
+      </div>
+    </div>
+
+    <div class="about-row">
+      <!-- Personal info -->
+      <div class="personal-info">
+        <div class="info-item"><p>Email: <span><a href={siteData.links.email}>{siteData.identity.email}</a></span></p></div>
+        <div class="info-item"><p>Website: <span><a href={siteData.links.site} target="_blank">muhammadhassaanjaved.com</a></span></p></div>
+        <div class="info-item"><p>Portfolio: <span><a href={siteData.links.portfolio} target="_blank">portfolio.muhammadhassaanjaved.com</a></span></p></div>
+        <div class="info-item"><p>Phone: <span><a href={siteData.links.phone}>{siteData.identity.phone}</a></span></p></div>
+        <div class="info-item"><p>Location: <span>{siteData.identity.location}</span></p></div>
+        <div class="buttons" style="margin-top: 2rem;">
+          <a href="#contact" data-rail-link class="btn">Contact Now</a>
+        </div>
+      </div>
+
+      <!-- Language skills -->
+      <div class="lang-skills">
+        {[['Urdu', '100%'], ['English', '90%']].map(([lang, pct]) => (
+          <div class="skill-item">
+            <h5>{lang}</h5>
+            <div class="progress shadow-dark">
+              <div class="progress-in" style={`width: ${pct};`}></div>
+              <div class="skill-percent">{pct}</div>
             </div>
-            
-            <div>
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Hobbies</h3>
-                <div class="timeline-box">
-                    <div class="timeline shadow-dark">
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Travel</h4></div>
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Sports</h4></div>
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Movies</h4></div>
-                        <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">Music</h4></div>
-                    </div>
-                </div>
-            </div>
-        </crusher-grid>
-      </section>
+          </div>
+        ))}
+      </div>
+    </div>
 
-      <!-- ===== Qualifications Section ===== -->
-      <section class="section-block panel-section" id="qualifications" data-panel>
-        <div class="section-title">
-          <h2>Qualifications</h2>
-        </div>
-        
-        <crusher-grid style="--grid-min-width: 350px; gap: 3rem;">
-            <div>
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Education</h3>
-                <div class="timeline-box">
-                    <div class="timeline shadow-dark">
-                    {siteData.education.map((item) => (
-                        <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-date">
-                                <i class="fa fa-calendar"></i> {item.range}
-                            </h3>
-                            <h4 class="timeline-title">{item.title}</h4>
-                            <p class="timeline-text">{item.org}</p>
-                        </div>
-                    ))}
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Experience</h3>
-                <div class="timeline-box">
-                    <div class="timeline shadow-dark">
-                    {siteData.experience.map((item) => (
-                        <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-date">
-                                <i class="fa fa-calendar"></i> {item.range}
-                            </h3>
-                            <h4 class="timeline-title">{item.title}</h4>
-                            <p class="timeline-text">{item.org}</p>
-                        </div>
-                    ))}
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <h3 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Certifications</h3>
-                <div class="timeline-box">
-                    <div class="timeline shadow-dark">
-                    {siteData.credentials.map((item) => (
-                        <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-date">
-                                <i class="fa fa-calendar"></i> {item.range}
-                            </h3>
-                            <h4 class="timeline-title">{item.title}</h4>
-                            <p class="timeline-text">{item.org}</p>
-                        </div>
-                    ))}
-                    </div>
-                </div>
-            </div>
-        </crusher-grid>
-      </section>
-
-      <!-- ===== Skills Section ===== -->
-      <section class="section-block panel-section" id="skills" data-panel>
-        <div class="section-title">
-          <h2>Skills</h2>
-        </div>
-        
-        <div style="margin-top: 1rem;">
-            <crusher-grid style="--grid-min-width: 350px; gap: 3rem;">
-            {['Urdu | 100%', 'English | 90%', 'Linux | 85%', 'AWS & GCP | 90%', 'Terraform | 80%', 'Python | 80%'].map(skillText => {
-                const parts = skillText.split('|');
-                const name = parts[0].trim();
-                const num = parts[1].trim();
-                return (
-                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                        <div style="display: flex; justify-content: space-between;">
-                            <span style="font-weight: 600; font-size: 1.1rem;">{name}</span>
-                            <span style="font-weight: 500; color: var(--site-text-soft);">{num}</span>
-                        </div>
-                        <div style="background: var(--site-border); border-radius: 99px; height: 10px; overflow: hidden; position: relative;">
-                            <div style={`background: var(--crusher-color-brand-primary); position: absolute; left: 0; top: 0; bottom: 0; width: ${num}; border-radius: 99px;`}></div>
-                        </div>
-                    </div>
-                )
-            })}
-            </crusher-grid>
-        </div>
-      </section>
-
-      <!-- ===== Projects Section ===== -->
-      <section class="section-block panel-section" id="projects" data-panel>
-        <div class="section-title">
-          <h2>Projects</h2>
-        </div>
-        
-        <crusher-grid style="--grid-min-width: 320px; gap: 2rem;">
-          {siteData.selectedProjects.map((project) => (
-            <a class="project-link" href={project.href} target="_blank" rel="noreferrer" style="text-decoration:none; display: block; height: 100%;">
-              <div class="portfolio-item-inner project-card" style="display: flex; flex-direction: column;">
-                <div style="aspect-ratio: 16/9; overflow: hidden; margin-bottom: 1.5rem;">
-                  <img src={project.image} alt={project.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-                </div>
-                <div class="project-copy" style="flex: 1; display: flex; flex-direction: column; padding: 0 1.5rem;">
-                  <p class="card-kicker" style="color: var(--crusher-color-brand-primary); margin:0 0 0.5rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;">{project.note}</p>
-                  <h3 style="margin: 0 0 1rem; color: var(--site-text); font-size: 1.25rem; font-weight: 600;">{project.title}</h3>
-                  <p style="color: var(--site-text-soft); font-size: 0.95rem; line-height: 1.6; margin: 0; padding-bottom: 1.5rem;">{project.summary}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </crusher-grid>
-      </section>
-
-      <!-- ===== Services Section ===== -->
-      <section class="section-block panel-section" id="services" data-panel>
-        <div class="section-title">
-          <h2>Services</h2>
-        </div>
-        
-        <crusher-grid style="--grid-min-width: 300px; gap: 2.5rem;">
-            {siteData.capabilityGroups.map((group) => (
-                <div class="service-item-inner">
-                    <div class="icon">
-                        <i class="fa fa-cogs"></i>
-                    </div>
-                    <h4 style="margin:0 0 15px; font-size: 18px; font-weight: 700;">{group.title}</h4>
-                    <p style="color: var(--site-text-soft); font-size: 16px; line-height: 25px; margin: 0;">{group.summary}</p>
-                </div>
+    <!-- Interests / Passions / Hobbies / Goals — 2x2 grid -->
+    <div class="timeline-row" style="margin-top: 30px;">
+      <div class="timeline-col-half">
+        <h3 class="subsection-title">Interests</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {['DevOps Engineering', 'Cloud Computing', 'Artificial Intelligence', 'Business Development', 'Digital Marketing'].map(item => (
+              <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">{item}</h4></div>
             ))}
-        </crusher-grid>
-      </section>
-
-      <!-- ===== Publications Section ===== -->
-      <section class="section-block panel-section" id="publications" data-panel>
-        <div class="section-title">
-          <h2>Publications</h2>
+          </div>
         </div>
-        
-        <crusher-grid style="--grid-min-width: 320px; gap: 2rem;">
-          {siteData.publications.map((publication) => (
-            <a class="project-link" href={publication.href} target="_blank" rel="noreferrer" style="text-decoration:none; display: block; height: 100%;">
-              <div class="portfolio-item-inner project-card" style="display: flex; flex-direction: column;">
-                <div style="aspect-ratio: 2/1; overflow: hidden; margin-bottom: 1.5rem;">
-                  <img src={publication.image} alt={publication.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-                </div>
-                <div class="project-copy" style="flex: 1; padding: 0 1.5rem 1.5rem 1.5rem;">
-                  <p class="card-kicker" style="color: var(--crusher-color-brand-primary); margin:0 0 0.5rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;">{publication.note}</p>
-                  <h3 style="margin: 0; color: var(--site-text); font-size: 1.25rem; font-weight: 600; line-height: 1.4;">{publication.title}</h3>
-                </div>
+      </div>
+
+      <div class="timeline-col-half">
+        <h3 class="subsection-title">Passions</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {['Lifelong Learning', 'Technological Mystery', 'Continuous Innovation', 'Continuous Automation', 'Building Efficient Systems'].map(item => (
+              <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">{item}</h4></div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-col-half">
+        <h3 class="subsection-title">Hobbies</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {['Travel', 'Sports', 'Movies', 'Music', 'Games'].map(item => (
+              <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">{item}</h4></div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-col-half">
+        <h3 class="subsection-title">Goals</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {['Learn Personal and Soft Skills', 'Achieve Work-Life Balance', 'Mentor Aspiring Technologists', 'Contribute to Open-Source', 'Volunteer for non-profit Organizations'].map(item => (
+              <div class="timeline-item"><div class="circle-dot"></div><h4 class="timeline-title">{item}</h4></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Qualifications Section ===== -->
+  <section class="section-block panel-section" id="qualifications" data-panel>
+    <div class="section-title"><h2>Qualifications</h2></div>
+
+    <div class="qual-grid">
+      <!-- LEFT COLUMN: Education, Certificates, Workshops -->
+      <div class="padd-15">
+        <h3 class="subsection-title">Education</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {siteData.education.map((item) => (
+              <div class="timeline-item">
+                <div class="circle-dot"></div>
+                <h3 class="timeline-date"><i class="fa fa-calendar"></i> {item.range}</h3>
+                <h4 class="timeline-title">{item.title}</h4>
+                <p class="timeline-text">{item.org}</p>
               </div>
-            </a>
-          ))}
-        </crusher-grid>
-      </section>
-
-      <!-- ===== References Section ===== -->
-      <section class="section-block panel-section" id="references" data-panel>
-        <div class="section-title">
-          <h2>References</h2>
+            ))}
+          </div>
         </div>
-        
-        <crusher-grid style="--grid-min-width: 300px; gap: 2.5rem;">
-            <div class="service-item-inner">
-                <div class="icon">
-                    <i class="fa fa-phone"></i>
-                </div>
-                <h4 style="margin:0 0 15px; font-size: 18px; font-weight: 700;">Ahmer Khan</h4>
-                <p style="color: var(--site-text-soft); font-size: 16px; line-height: 25px; margin: 0;">+92 321 4499487</p>
+
+        <h3 class="subsection-title" style="margin-top: 2rem;">Certificates</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {siteData.certificates.map((item) => (
+              <div class="timeline-item">
+                <div class="circle-dot"></div>
+                <h3 class="timeline-date"><i class="fa fa-calendar"></i> {item.range}</h3>
+                <h4 class="timeline-title">{item.title}</h4>
+                <p class="timeline-text">{item.org}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <h3 class="subsection-title" style="margin-top: 2rem;">Workshops</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {siteData.workshops.map((item) => (
+              <div class="timeline-item">
+                <div class="circle-dot"></div>
+                <h3 class="timeline-date"><i class="fa fa-calendar"></i> {item.range}</h3>
+                <h4 class="timeline-title">{item.title}</h4>
+                <p class="timeline-text">{item.org}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Experience, Licences, Courses -->
+      <div class="padd-15">
+        <h3 class="subsection-title">Experience</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {siteData.experience.map((item) => (
+              <div class="timeline-item">
+                <div class="circle-dot"></div>
+                <h3 class="timeline-date"><i class="fa fa-calendar"></i> {item.range}</h3>
+                <h4 class="timeline-title">{item.title}</h4>
+                <p class="timeline-text">{item.org}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <h3 class="subsection-title" style="margin-top: 2rem;">Licences</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {siteData.credentials.map((item) => (
+              <div class="timeline-item">
+                <div class="circle-dot"></div>
+                <h3 class="timeline-date"><i class="fa fa-calendar"></i> {item.range}</h3>
+                <h4 class="timeline-title">{item.title}</h4>
+                <p class="timeline-text">{item.org}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <h3 class="subsection-title" style="margin-top: 2rem;">Courses</h3>
+        <div class="timeline-box">
+          <div class="timeline shadow-dark">
+            {siteData.courses.map((item) => (
+              <div class="timeline-item">
+                <div class="circle-dot"></div>
+                <h3 class="timeline-date"><i class="fa fa-calendar"></i> {item.range}</h3>
+                <h4 class="timeline-title">{item.title}</h4>
+                <p class="timeline-text">{item.org}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills Section ===== -->
+  <section class="section-block panel-section" id="skills" data-panel>
+    <div class="section-title"><h2>Skills</h2></div>
+
+    <div class="skills-category">
+      <h3 class="skills-heading">DevOps</h3>
+      <div class="skills-grid">
+        {devopsSkills.map(s => <div class="skill-tile"><h3>{s}</h3></div>)}
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="skills-heading">Cloud</h3>
+      <div class="skills-grid">
+        {cloudSkills.map(s => <div class="skill-tile"><h3>{s}</h3></div>)}
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="skills-heading">Programming</h3>
+      <div class="skills-grid">
+        {programmingSkills.map(s => <div class="skill-tile"><h3>{s}</h3></div>)}
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="skills-heading">Development</h3>
+      <div class="skills-grid">
+        {devSkills.map(s => <div class="skill-tile"><h3>{s}</h3></div>)}
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="skills-heading">Database</h3>
+      <div class="skills-grid">
+        {dbSkills.map(s => <div class="skill-tile"><h3>{s}</h3></div>)}
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="skills-heading">Marketing</h3>
+      <div class="skills-grid">
+        {marketingSkills.map(s => <div class="skill-tile"><h3>{s}</h3></div>)}
+      </div>
+    </div>
+
+    <div class="skills-category">
+      <h3 class="skills-heading">Designing</h3>
+      <div class="skills-grid">
+        {designSkills.map(s => <div class="skill-tile"><h3>{s}</h3></div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects Section ===== -->
+  <section class="section-block panel-section" id="projects" data-panel>
+    <div class="section-title"><h2>Projects</h2></div>
+
+    <div class="portfolio-grid">
+      {siteData.selectedProjects.map((project) => (
+        <div class="portfolio-item">
+          <a href={project.href} target="_blank" rel="noreferrer">
+            <div class="portfolio-item-inner">
+              <div class="portfolio-img">
+                <img src={project.image} alt={project.title} loading="lazy" />
+              </div>
+              <div class="portfolio-text">
+                <p class="portfolio-label">{project.note}</p>
+                <h3 class="portfolio-title">{project.title}</h3>
+                <p class="portfolio-desc">{project.summary}</p>
+              </div>
             </div>
-            
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== Services Section ===== -->
+  <section class="section-block panel-section" id="services" data-panel>
+    <div class="section-title"><h2>Services</h2></div>
+
+    <div class="services-grid">
+      {siteData.capabilityGroups.map((group, i) => {
+        const icons = ['fa-cloud', 'fa-cogs', 'fa-robot', 'fa-code'];
+        return (
+          <div class="service-item">
             <div class="service-item-inner">
-                <div class="icon">
-                    <i class="fa fa-phone"></i>
-                </div>
-                <h4 style="margin:0 0 15px; font-size: 18px; font-weight: 700;">Asfandyar Akbar</h4>
-                <p style="color: var(--site-text-soft); font-size: 16px; line-height: 25px; margin: 0;">+92 336 9866642</p>
+              <div class="icon"><i class={`fa ${icons[i] || 'fa-cogs'}`}></i></div>
+              <h4>{group.title}</h4>
+              <p>{group.summary}</p>
             </div>
-        </crusher-grid>
-      </section>
+          </div>
+        );
+      })}
+    </div>
+  </section>
 
-      <!-- ===== Contact Section ===== -->
-      <section class="section-block panel-section" id="contact" data-panel>
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
-        
-        <h3 class="contact-title">Do You Have Any Questions?</h3>
-        <h4 class="contact-sub-title">I'M AT YOUR SERVICE</h4>
-        
-        <crusher-grid style="--grid-min-width: 200px; gap: 2rem; margin-bottom: 60px;">
-            <a href={`tel:${siteData.identity.phone}`} target="_blank" style="text-decoration:none;">
-                <div class="contact-info-item-inner">
-                    <div class="icon"><i class="fa fa-phone"></i></div>
-                    <h4>Call</h4>
-                    <p>{siteData.identity.phone}</p>
-                </div>
-            </a>
-            
-            <a href="https://maps.app.goo.gl/sUELDzVFdkHNBYg2A" target="_blank" style="text-decoration:none;">
-                <div class="contact-info-item-inner">
-                    <div class="icon"><i class="fa fa-map-marker"></i></div>
-                    <h4>Location</h4>
-                    <p>{siteData.identity.location}</p>
-                </div>
-            </a>
-            
-            <a href={`mailto:${siteData.identity.email}`} target="_blank" style="text-decoration:none;">
-                <div class="contact-info-item-inner">
-                    <div class="icon"><i class="fa fa-envelope"></i></div>
-                    <h4>Email</h4>
-                    <p>{siteData.identity.email}</p>
-                </div>
-            </a>
-            
-            <a href="https://muhammadhassaanjaved.com/" target="_blank" style="text-decoration:none;">
-                <div class="contact-info-item-inner">
-                    <div class="icon"><i class="fa fa-globe"></i></div>
-                    <h4>Website</h4>
-                    <p>muhammadhassaanjaved.com</p>
-                </div>
-            </a>
-        </crusher-grid>
+  <!-- ===== Publications Section ===== -->
+  <section class="section-block panel-section" id="publications" data-panel>
+    <div class="section-title"><h2>Publications</h2></div>
 
-        <h3 class="contact-title">SEND ME AN EMAIL</h3>
-        <h4 class="contact-sub-title">I'M VERY RESPONSIVE TO MESSAGES</h4>
-        
-        <div style="max-width: 800px; margin: 0 auto;">
-            <form style="display:flex; flex-direction:column; gap:1.5rem;">
-                <div style="display:flex; gap:1.5rem; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 200px;">
-                        <input type="text" placeholder="Name" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:99px; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif;" />
-                    </div>
-                    <div style="flex: 1; min-width: 200px;">
-                        <input type="email" placeholder="Email" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:99px; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif;" />
-                    </div>
-                </div>
-                <input type="text" placeholder="Subject" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:99px; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif;" />
-                <textarea placeholder="Message" rows="6" style="box-sizing: border-box; width:100%; padding:1rem 1.25rem; border-radius:1rem; border:1px solid var(--site-border-mid); background:var(--site-surface); color:var(--site-text); font-family: 'Poppins', sans-serif; resize: vertical;"></textarea>
-                <div style="margin-top: 0.5rem;">
-                    <crusher-button type="button">Send Message</crusher-button>
-                </div>
-            </form>
+    <div class="portfolio-grid">
+      {siteData.publications.map((pub) => (
+        <div class="portfolio-item">
+          <a href={pub.href} target="_blank" rel="noreferrer">
+            <div class="portfolio-item-inner">
+              <div class="portfolio-img">
+                <img src={pub.image} alt={pub.title} loading="lazy" />
+              </div>
+              <div class="portfolio-text">
+                <p class="portfolio-label">{pub.note}</p>
+                <h3 class="portfolio-title">{pub.title}</h3>
+                <p class="portfolio-desc">{pub.summary}</p>
+              </div>
+            </div>
+          </a>
         </div>
-      </section>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== References Section ===== -->
+  <section class="section-block panel-section" id="references" data-panel>
+    <div class="section-title"><h2>References</h2></div>
+
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-item-inner">
+          <div class="icon"><i class="fa fa-phone"></i></div>
+          <h4>Ahmer Khan</h4>
+          <p>+92 321 4499487</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-item-inner">
+          <div class="icon"><i class="fa fa-phone"></i></div>
+          <h4>Asfandyar Akbar</h4>
+          <p>+92 336 9866642</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section class="section-block panel-section" id="contact" data-panel>
+    <div class="section-title"><h2>Contact</h2></div>
+
+    <h3 class="contact-title">Do You Have Any Questions?</h3>
+    <h4 class="contact-sub-title">I'M AT YOUR SERVICE</h4>
+
+    <div class="contact-info-grid">
+      <a href={siteData.links.phone} target="_blank" class="contact-info-link">
+        <div class="contact-info-item-inner">
+          <div class="icon"><i class="fas fa-phone"></i></div>
+          <h4>Call</h4>
+        </div>
+      </a>
+      <a href={siteData.links.maps} target="_blank" class="contact-info-link">
+        <div class="contact-info-item-inner">
+          <div class="icon"><i class="fas fa-location-dot"></i></div>
+          <h4>Location</h4>
+        </div>
+      </a>
+      <a href={siteData.links.email} target="_blank" class="contact-info-link">
+        <div class="contact-info-item-inner">
+          <div class="icon"><i class="fas fa-envelope"></i></div>
+          <h4>Email</h4>
+        </div>
+      </a>
+      <a href={siteData.links.site} target="_blank" class="contact-info-link">
+        <div class="contact-info-item-inner">
+          <div class="icon"><i class="fas fa-globe"></i></div>
+          <h4>Website</h4>
+        </div>
+      </a>
+    </div>
+
+    <h3 class="contact-title" style="margin-top: 3rem;">SEND ME AN EMAIL</h3>
+    <h4 class="contact-sub-title">I'M VERY RESPONSIVE TO MESSAGES</h4>
+
+    <div class="contact-form-wrap" id="form-container">
+      <form id="contact-form">
+        <div class="form-row">
+          <div class="form-item col-6">
+            <input type="text" name="name" placeholder="Name" class="form-control" required />
+          </div>
+          <div class="form-item col-6">
+            <input type="email" name="email" placeholder="Email" class="form-control" required />
+          </div>
+        </div>
+        <div class="form-item">
+          <input type="text" name="subject" placeholder="Subject" class="form-control" />
+        </div>
+        <div class="form-item">
+          <textarea name="message" placeholder="Message" rows="6" class="form-control"></textarea>
+        </div>
+        <div class="form-item">
+          <button type="submit" class="btn">Send Message</button>
+        </div>
+      </form>
+
+      <!-- Lottie feedback overlay — shown during/after submission -->
+      <div id="feedback-overlay">
+        <canvas id="feedback-canvas"></canvas>
+      </div>
+    </div>
+  </section>
 
 </MainLayout>

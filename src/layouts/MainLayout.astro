@@ -31,10 +31,31 @@ const { title } = Astro.props;
 
 		<!-- Font Awesome (matching old site icon set) -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+		<!-- Typed.js — for home section typing animation -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js" is:inline></script>
+
+		<!-- EmailJS — contact form submissions -->
+		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" is:inline></script>
 	</head>
 	<body>
-		<!-- Style switcher + toast (keep from framework) -->
-		<crusher-style-switcher></crusher-style-switcher>
+		<!-- Custom colour & mode switcher — matches old site exactly -->
+		<div class="style-switcher" id="style-switcher">
+			<div class="style-switcher-toggler s-icon" id="switcher-toggle">
+				<i class="fas fa-cog fa-spin"></i>
+			</div>
+			<div class="day-night s-icon" id="switcher-daynight">
+				<i class="fas fa-moon"></i>
+			</div>
+			<h4>Theme Colors</h4>
+			<div class="colors">
+				<span class="color-1" data-color="#37b182" title="color-1"></span>
+				<span class="color-2" data-color="#1854b4" title="color-2"></span>
+				<span class="color-3" data-color="#fa5b0f" title="color-3"></span>
+				<span class="color-4" data-color="#f021b2" title="color-4"></span>
+				<span class="color-5" data-color="#ec1839" title="color-5"></span>
+			</div>
+		</div>
 		<crusher-toast-center></crusher-toast-center>
 
 		<div class="site-shell">
@@ -83,22 +104,112 @@ const { title } = Astro.props;
 		<script>
 			import '../scripts/site.js';
 
-			// Back-section animation on panel switch (matches old site slide effect)
 			document.addEventListener('DOMContentLoaded', () => {
-				const panels = document.querySelectorAll('.panel-section');
-				const links = document.querySelectorAll('[data-rail-link]');
 
-				links.forEach(link => {
-					link.addEventListener('click', () => {
-						const currentActive = document.querySelector('.panel-section.is-active');
-						if (currentActive) {
-							panels.forEach(p => p.classList.remove('back-section'));
-							currentActive.classList.add('back-section');
-							setTimeout(() => {
-								currentActive.classList.remove('back-section');
-							}, 600);
-						}
+				// ---- Typed.js animation ----
+				if (typeof Typed !== 'undefined' && document.querySelector('.typing')) {
+					new Typed('.typing', {
+						strings: ['', 'DevOps', 'Cloud', 'AI'],
+						typeSpeed: 150,
+						backSpeed: 10,
+						loop: true,
 					});
+				}
+
+				// ---- Custom colour & mode switcher ----
+				const switcher = document.getElementById('style-switcher');
+				const toggle = document.getElementById('switcher-toggle');
+				const dayNight = document.getElementById('switcher-daynight');
+
+				toggle && toggle.addEventListener('click', () => {
+					switcher.classList.toggle('open');
+				});
+
+				window.addEventListener('scroll', () => {
+					switcher && switcher.classList.remove('open');
+				});
+
+				// Colour swatches
+				document.querySelectorAll('.style-switcher .colors span').forEach(swatch => {
+					swatch.addEventListener('click', () => {
+						const color = swatch.getAttribute('data-color');
+						document.documentElement.style.setProperty('--skin-color', color);
+						localStorage.setItem('skin-color', color);
+					});
+				});
+
+				// Dark / light toggle
+				function applyTheme(dark) {
+					document.documentElement.classList.toggle('dark', dark);
+					const icon = dayNight && dayNight.querySelector('i');
+					if (icon) {
+						icon.classList.toggle('fa-sun', dark);
+						icon.classList.toggle('fa-moon', !dark);
+					}
+				}
+
+				dayNight && dayNight.addEventListener('click', () => {
+					const isDark = document.documentElement.classList.contains('dark');
+					applyTheme(!isDark);
+					localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+				});
+
+				// Restore saved prefs
+				const savedColor = localStorage.getItem('skin-color');
+				if (savedColor) document.documentElement.style.setProperty('--skin-color', savedColor);
+				const savedTheme = localStorage.getItem('theme');
+				if (savedTheme) applyTheme(savedTheme === 'dark');
+
+				// ---- Contact form — EmailJS ----
+				if (typeof emailjs !== 'undefined') {
+					emailjs.init({ publicKey: 'XZB7nrR299U0EOFrp' });
+				}
+
+				const contactForm = document.getElementById('contact-form');
+				const formContainer = document.getElementById('form-container');
+				const feedbackOverlay = document.getElementById('feedback-overlay');
+				const feedbackCanvas = document.getElementById('feedback-canvas');
+
+				function loadLottie(src) {
+					import('https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm').then(({ DotLottie }) => {
+						new DotLottie({
+							autoplay: true,
+							loop: false,
+							canvas: feedbackCanvas,
+							src,
+						});
+					}).catch(() => {});
+				}
+
+				function showFeedback(src, durationMs = 5000) {
+					feedbackOverlay.style.display = 'flex';
+					formContainer.classList.add('processing');
+					loadLottie(src);
+					setTimeout(() => {
+						feedbackOverlay.style.display = 'none';
+						formContainer.classList.remove('processing');
+					}, durationMs);
+				}
+
+				contactForm && contactForm.addEventListener('submit', function (e) {
+					e.preventDefault();
+
+					if (typeof emailjs === 'undefined') {
+						showFeedback('https://lottie.host/68dbbd9d-3009-4719-8b44-748855ba9535/aX6YS86frQ.lottie');
+						return;
+					}
+
+					formContainer.classList.add('processing');
+
+					emailjs.sendForm('service_fmz6mxd', 'template_3brgp3p', contactForm)
+						.then(() => {
+							contactForm.reset();
+							showFeedback('https://lottie.host/4cb8169d-7231-4f2f-b93f-bb7e74c4d508/fVrcT66ihx.lottie', 7000);
+						})
+						.catch(() => {
+							// Use direct lottie file URL (not /embed/ — that causes CORS)
+							showFeedback('https://lottie.host/68dbbd9d-3009-4719-8b44-748855ba9535/aX6YS86frQ.lottie', 5000);
+						});
 				});
 			});
 		</script>

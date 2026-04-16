@@ -44,6 +44,18 @@ function setActiveLink(id) {
 
 function setActivePanel(id) {
   const panels = document.querySelectorAll('[data-panel]');
+
+  // Capture the currently active panel BEFORE changing classes
+  const outgoing = document.querySelector('[data-panel].is-active');
+
+  // Clear previous back-section markers
+  panels.forEach((p) => p.classList.remove('back-section'));
+
+  // Mark the outgoing panel so it stays visible underneath the slide-in
+  if (outgoing && outgoing.id !== id) {
+    outgoing.classList.add('back-section');
+  }
+
   let matched = false;
   panels.forEach((panel) => {
     const panelId = panel.id;
@@ -54,6 +66,7 @@ function setActivePanel(id) {
     }
     matched ||= isActive;
   });
+
   const resolved = matched ? id : 'home';
   if (!matched) {
     const home = document.getElementById('home');
